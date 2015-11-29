@@ -1,9 +1,6 @@
-$(document).ready(function() {
-    $.ajax({
-        url: "http://localhost:8080/greeting?name=someName"
-    }).then(function(data, status, jqxhr) {
-       $('.greeting-id').append(data.id);
-       $('.greeting-content').append(data.content);
-       console.log(jqxhr);
-    });
-});
+function Hello($scope, $http) {
+    $http.get('http://localhost:8080/greeting').
+        success(function(data) {
+            $scope.greeting = data;
+        });
+}
