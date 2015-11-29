@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Hello CORS</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="hello.js"></script>
-    </head>
+<!doctype html>
+<html ng-app>
+	<head>
+	<link href="css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+		<title>Hello AngularJS</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    	<script src="hello.js"></script>
+	</head>
 
-    <body>
-        <div>
-            <p class="greeting-id">The ID is </p>
-            <p class="greeting-content">The content is </p>
-        </div>
-    </body>
+	<body>
+	<h1>Form</h1>
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+		<div ng-controller="Hello">
+			<p>The ID is {{greeting.id}}</p>
+			<p>The content is {{greeting.content}}</p>
+		</div>
+	</body>
 </html>
