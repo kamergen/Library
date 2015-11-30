@@ -12,14 +12,25 @@ public class Book {
 	private String publishingHouse;
 	private int years;
 	private int pageNumber;
+	private int idBook;
 	
-	public Book(String title, String publishingHouse, int years, int pageNumber) {	
+	public Book(int idBook, String title, String publishingHouse, int years, int pageNumber) {	
+		this.idBook = idBook;
 		this.title = title;
 		this.publishingHouse = publishingHouse;
 		this.years = years;
 		this.pageNumber = pageNumber;
 	}
 	
+/*	Book(int id,String idBook, String title, String publishingHouse, String years, String pageNumber) {	
+		this.id = id;
+		this.idBook = Integer.valueOf(idBook);
+		this.title = title;
+		this.publishingHouse = publishingHouse;
+		this.years = Integer.valueOf(years);
+		this.pageNumber = Integer.valueOf(pageNumber);
+	}
+*/	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -42,7 +53,10 @@ public class Book {
 		return true;
 	}
 
-
+	public int getIdBook() {
+		return idBook;
+	}
+	
 	public int getId() {
 		return id;
 	}

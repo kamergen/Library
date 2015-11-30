@@ -31,6 +31,7 @@ public class Application {
 	/**
 	 * Pre-load the system with employees and items.
 	 */
+	
 	@PostConstruct
 	public void init() {
 
@@ -38,8 +39,8 @@ public class Application {
 		usersRepository.save(new User("1Bilbo", "1Baggins", "pas1","","1q@.com"));
 		usersRepository.save(new User("2Bilbo", "2Baggins", "pas1","","2q@.com"));
 
-		bookRepository.save(new Book("bucvar", "bucvarHouse", 102, 1022));
-		bookRepository.save(new Book("bucvar2", "bucvarHouse2", 2015, 2541));
+		bookRepository.save(new Book(2,"bucvar", "bucvarHouse", 102, 1022));
+		bookRepository.save(new Book(3,"bucvar2", "bucvarHouse2", 2015, 2541));
 		
 		
 		
