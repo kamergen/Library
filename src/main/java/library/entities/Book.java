@@ -21,16 +21,7 @@ public class Book {
 		this.years = years;
 		this.pageNumber = pageNumber;
 	}
-	
-/*	Book(int id,String idBook, String title, String publishingHouse, String years, String pageNumber) {	
-		this.id = id;
-		this.idBook = Integer.valueOf(idBook);
-		this.title = title;
-		this.publishingHouse = publishingHouse;
-		this.years = Integer.valueOf(years);
-		this.pageNumber = Integer.valueOf(pageNumber);
-	}
-*/	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

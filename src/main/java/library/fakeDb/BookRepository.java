@@ -1,6 +1,7 @@
 package library.fakeDb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -69,15 +70,43 @@ public class BookRepository implements CrudRepository<Book, Integer> {
 
 	}
 
-	public Book updateBook(Integer id, Book book) {
+	public Boolean updateBook(Integer idBook, Book book) {
+		
+		try {
 
-		Book prevBook = books.get(id);
-		prevBook.setTitle(book.getTitle());
-		prevBook.setPublishingHouse(book.getPublishingHouse());
-		prevBook.setPageNumber(book.getPageNumber());
-		prevBook.setYears(book.getYears());
-			
-		return prevBook;
+			Book prevBook = books.get(idBook);
+			prevBook.setTitle(book.getTitle());
+			prevBook.setPublishingHouse(book.getPublishingHouse());
+			prevBook.setPageNumber(book.getPageNumber());
+			prevBook.setYears(book.getYears());
+			return true;
+
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public Boolean addBook(Book book) {
+		try {
+			books.add(book);
+			return true;
+		} catch (Exception e) {
+			return false;	
+		}
+	}
+
+	public Boolean deleteBook(Integer idBook) {
+
+		try {
+			books.remove(books.get(idBook));
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public List<Book> getAllBook() {
+		return books;
 	}
 
 

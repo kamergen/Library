@@ -1,6 +1,7 @@
 package library.fakeDb;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.core.AuthenticationException;
@@ -79,13 +80,46 @@ public class UsersRepository implements CrudRepository<User, Integer> {
 	public User findOne(String email, String password) throws AuthenticationException {
 		for (User user : users) {
 			if (user.getEmail().equals(email)) {
-				if(user.getPassword().equals(password)){
-					return user;	
+				if (user.getPassword().equals(password)) {
+					return user;
 				}
 			}
 		}
 		return null;
-		
+
+	}
+
+	public User findOne(String email) {
+		for (User user : users) {
+			if (user.getEmail().equals(email)) {
+				return user;
+			}
+		}
+
+		return null;
+	}
+
+	public List<User> getAllUsers() {
+		return users;
+	}
+
+	public Boolean delete(String email) {
+		for (User user : users) {
+			if (user.getEmail().equals(email)) {
+				users.remove(user);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Boolean addUser(User user) {
+		try {
+			users.add(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 }

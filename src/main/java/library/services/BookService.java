@@ -1,5 +1,7 @@
 package library.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,17 +14,22 @@ public class BookService {
 	@Autowired
 	private BookDao bookDao; 
 	
-	public Book getBook(Integer idBook) {
-		return bookDao.getBook(idBook);
-	}
-
-	public Book addBook(Book book) {
+	public Boolean addBook(Book book) {
 
 		return bookDao.addBook(book);
 	}
 
-	public Book updateBook(Integer id, Book book) {
-		return bookDao.updateBook(id,book);
+	public Boolean updateBook(Integer idBook, Book book) {
+		return bookDao.updateBook(idBook,book);
+	}
+
+	public Boolean deleteBook(Integer idBook) {
+
+		return bookDao.deleteBook(idBook);
+	}
+
+	public List<Book> getAllBook() {
+		return bookDao.getAllBook();
 	}
 
 	

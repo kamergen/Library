@@ -1,5 +1,7 @@
 package library.daos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,21 +13,21 @@ public class BookDao {
 
 	@Autowired
 	private FakeDatebase datebase;
-	
-	/*public Book addBook(String title, String publishingHouse, int years, int pageNumber){
-		
-	}*/
 
-	public Book getBook(Integer idBook) {
-		return datebase.getBookRepository().findOne(idBook);
+	public Boolean addBook(Book book) {
+		return datebase.getBookRepository().addBook(book);
 	}
 
-	public Book addBook(Book book) {
-		return datebase.getBookRepository().save(book);
+	public Boolean updateBook(Integer idBook, Book book) {
+		return datebase.getBookRepository().updateBook(idBook,book);
 	}
 
-	public Book updateBook(Integer id, Book book) {
-		return datebase.getBookRepository().updateBook(id,book);
+	public Boolean deleteBook(Integer idBook) {
+		return datebase.getBookRepository().deleteBook(idBook);
+	}
+
+	public List<Book> getAllBook() {
+		return datebase.getBookRepository().getAllBook();
 	}
 	
 }
