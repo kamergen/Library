@@ -41,7 +41,8 @@ public class GreetingController {
 	public @ResponseBody Greeting greetingWithJavaconfig(
 			@RequestParam(required = false, defaultValue = "World") String name) {
 		System.out.println("==== in greeting ====");
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
+		
+	return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
 }
