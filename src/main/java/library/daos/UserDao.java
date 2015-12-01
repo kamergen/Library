@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import library.entities.User;
-import library.fakeDb.FakeDatebase;
 
 @Repository
 public class UserDao {
-	@Autowired
+/*	@Autowired
 	FakeDatebase datebase;
 
 	public List<User> getAllUsers() {
@@ -23,6 +22,6 @@ public class UserDao {
 
 	public Boolean addUser(User user) {
 		return datebase.getUsersRepository().addUser(user);
-	}
+	}*/
 
 }

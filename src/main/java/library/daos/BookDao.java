@@ -6,15 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import library.entities.Book;
-import library.fakeDb.FakeDatebase;
 
 @Repository
 public class BookDao {
 
-	@Autowired
+	/*@Autowired
 	private FakeDatebase datebase;
-
-	public Boolean addBook(Book book) {
+*/
+	/*public Boolean addBook(Book book) {
 		return datebase.getBookRepository().addBook(book);
 	}
 
@@ -28,6 +27,6 @@ public class BookDao {
 
 	public List<Book> getAllBook() {
 		return datebase.getBookRepository().getAllBook();
-	}
+	}*/
 	
 }

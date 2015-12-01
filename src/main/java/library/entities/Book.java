@@ -4,18 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+
 public class Book {
 	
-	private @Id @GeneratedValue int id;
 	private String title;
 	private String publishingHouse;
 	private int years;
 	private int pageNumber;
-	private int idBook;
-	
-	public Book(int idBook, String title, String publishingHouse, int years, int pageNumber) {	
-		this.idBook = idBook;
+	private int id;	
+
+	public Book(int id, String title, String publishingHouse, int years, int pageNumber) {	
+		this.id = id;
 		this.title = title;
 		this.publishingHouse = publishingHouse;
 		this.years = years;
@@ -29,7 +28,7 @@ public class Book {
 		result = prime * result + id;
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -44,12 +43,14 @@ public class Book {
 		return true;
 	}
 
-	public int getIdBook() {
-		return idBook;
-	}
 	
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -76,7 +77,4 @@ public class Book {
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
 	}
-	
-	
-	
 }

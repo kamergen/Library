@@ -25,12 +25,12 @@ public class UserController {
 
 	private User user;
 
-	@RequestMapping(path = "user/getall", method = RequestMethod.GET)
+/*	@RequestMapping(path = "user/getall", method = RequestMethod.GET)
 	public @ResponseBody List<User> getAllUsers() {
 		return userService.getAllUsers();
-	}
+	}*/
 
-	@RequestMapping(path = "user/add", method = RequestMethod.POST)
+/*	@RequestMapping(path = "user/add", method = RequestMethod.POST)
 	public @ResponseBody Boolean addUser(HttpServletRequest request) {
 
 		String firstName = request.getParameter("firstName");
@@ -47,6 +47,6 @@ public class UserController {
 	@RequestMapping(path = "user/delete", method = RequestMethod.DELETE)
 	public @ResponseBody Boolean deleteUser(@RequestParam(required = true) String email) {
 		return userService.deleteBook(email);
-	}
+	}*/
 
 }

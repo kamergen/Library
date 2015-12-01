@@ -18,14 +18,14 @@ public class FindController {
 	@Autowired
 	private FindService findService;
 	
-	@RequestMapping(path = "user/get", method = RequestMethod.GET)
+/*	@RequestMapping(path = "user/get", method = RequestMethod.GET)
 	public @ResponseBody User getUser(@RequestParam(required = true) String email) {
 		return findService.getUser(email);
-	}
+	}*/
 	
 	@RequestMapping(path = "book/get", method = RequestMethod.GET)
-	public @ResponseBody Book getBook(@RequestParam(required = true) Integer idBook) {		
-		return findService.getBook(idBook);
+	public @ResponseBody Book getBook(@RequestParam(required = true) String id) {		
+		return findService.getBook(Integer.valueOf(id));
 	}
 	
 }

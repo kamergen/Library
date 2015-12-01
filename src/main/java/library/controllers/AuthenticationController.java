@@ -16,10 +16,10 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationService authService;
 	
-	@RequestMapping(path = "auth/login", method = RequestMethod.GET)
+/*	@RequestMapping(path = "auth/login", method = RequestMethod.GET)
 	public @ResponseBody User login(@RequestParam(required = true) String email, 
 			@RequestParam(required = true) String password ) {		
 		return authService.login(email, password);
-	}
+	}*/
 
 }

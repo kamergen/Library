@@ -18,12 +18,12 @@ public class UserService {
 		return null;
 	}
 
-	public Boolean deleteBook(String email) {
+/*	public Boolean deleteBook(String email) {
 
 		return userDao.deleteUser(email);
 	}
 
 	public List<User> getAllUsers() {
 		return userDao.getAllUsers();
-	}
+	}*/
 }

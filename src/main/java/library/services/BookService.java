@@ -14,7 +14,7 @@ public class BookService {
 	@Autowired
 	private BookDao bookDao; 
 	
-	public Boolean addBook(Book book) {
+	/*public Boolean addBook(Book book) {
 
 		return bookDao.addBook(book);
 	}
@@ -30,7 +30,7 @@ public class BookService {
 
 	public List<Book> getAllBook() {
 		return bookDao.getAllBook();
-	}
+	}*/
 
 	
 	

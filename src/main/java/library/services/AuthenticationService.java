@@ -12,8 +12,8 @@ public class AuthenticationService {
 	@Autowired
 	private AuthentificationDao authentificationDao;
 	
-	public User login(String email, String password) {				
+/*	public User login(String email, String password) {				
 		return authentificationDao.login(email,password);
-	}	
+	}*/	
 
 }

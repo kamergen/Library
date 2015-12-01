@@ -21,12 +21,12 @@ public class BookController {
 	private BookService bookService;
 	private Book book;
 	
-	@RequestMapping(path = "book/getall", method = RequestMethod.GET)
+	/*@RequestMapping(path = "book/getall", method = RequestMethod.GET)
 	public @ResponseBody List<Book> getAllBook() {		
 		return bookService.getAllBook();
-	}
+	}*/
 	
-	@RequestMapping(path = "book/add", method = RequestMethod.POST)
+/*	@RequestMapping(path = "book/add", method = RequestMethod.POST)
 	public @ResponseBody Boolean addBook(HttpServletRequest request) {
 		
 		int idBook = Integer.valueOf(request.getParameter("idBook"));
@@ -57,5 +57,5 @@ public class BookController {
 	@RequestMapping(path = "book/delete", method = RequestMethod.DELETE)
 	public @ResponseBody Boolean deleteBook(@RequestParam(required = true) Integer idBook) {		
 		return bookService.deleteBook(idBook);
-	}
+	}*/
 }
