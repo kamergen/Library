@@ -19,18 +19,22 @@ public class BookService {
 
 		return bookDao.addBook(book);
 	}
-/*
-	public Boolean updateBook(Integer idBook, Book book) {
-		return bookDao.updateBook(idBook,book);
+	
+	public Boolean updateBook(NewBook book) {
+		return bookDao.updateBook(book);
 	}
 
-	public Boolean deleteBook(Integer idBook) {
+	public Boolean deleteBook(Integer id) {
 
-		return bookDao.deleteBook(idBook);
+		return bookDao.deleteBook(id);
 	}
-*/
 	public List<NewBook> getAllBook() {
 		return bookDao.getAllBook();
+	}
+
+	public NewBook getBook(Integer id) {
+
+		return bookDao.getBook(id);
 	}
 
 	

@@ -34,7 +34,7 @@ public class BookDao {
 		try {
 			ctx.close();
 			mapper.addBook(book);
-			
+
 			return true;
 
 		} catch (Exception e) {
@@ -42,13 +42,43 @@ public class BookDao {
 			return false;
 		}
 	}
-	/*
-	 * public Boolean updateBook(Integer idBook, Book book) { return
-	 * datebase.getBookRepository().updateBook(idBook,book); }
-	 * 
-	 * public Boolean deleteBook(Integer idBook) { return
-	 * datebase.getBookRepository().deleteBook(idBook); }
-	 */
+
+	public Boolean updateBook(NewBook book) {
+
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+		ctx.register(DataConfig.class);
+		ctx.refresh();
+		BookMapper mapper = ctx.getBean(BookMapper.class);
+
+		try {
+			ctx.close();
+			mapper.updateBook(book);
+			return true;
+
+		} catch (Exception e) {
+			ctx.close();
+			return false;
+		}
+	}
+
+	public Boolean deleteBook(Integer id) {
+
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+		ctx.register(DataConfig.class);
+		ctx.refresh();
+		BookMapper mapper = ctx.getBean(BookMapper.class);
+
+		try {
+			ctx.close();
+			mapper.deleteBook(id);
+
+			return true;
+
+		} catch (Exception e) {
+			ctx.close();
+			return false;
+		}
+	}
 
 	public List<NewBook> getAllBook() {
 

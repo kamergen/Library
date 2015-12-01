@@ -1,28 +1,39 @@
 
 package library.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
-@Entity
 public class User {
 
-	
-	private @Id @GeneratedValue int id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
-	//private Date registrationDate;
 	private String password;
 	private String avatar;
 	private String email;
-
+	private String role;
 	
+	public User(){
+		
+	}
+
+	public User(Integer id, String firstName, String lastName, String password, String avatar, String email,
+			String role) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.avatar = avatar;
+		this.email = email;
+		this.role = role;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -35,23 +46,20 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
-	public User( String firstName, String lastName,  String password, String avatar,
-			String email) {		
-		this.firstName = firstName;
-		this.lastName = lastName;
-		//this.registrationDate = registrationDate;
-		this.password = password;
-		this.avatar = avatar;
-		this.email = email;
+	public Integer getId() {
+		return id;
 	}
 
-	public int getId() {
-		return id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -69,14 +77,6 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	/*public Date getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
-	}*/
 
 	public String getPassword() {
 		return password;
@@ -102,4 +102,13 @@ public class User {
 		this.email = email;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	
 }

@@ -11,8 +11,10 @@ public class RegestrarionService {
 
 	@Autowired
 	private UserDao userDao;
+
 	
-/*	public Boolean addUser(User user) {
+	public Boolean addUser(User user) {
 		return userDao.addUser(user);
-	}*/
+	}
+
 }
