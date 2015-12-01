@@ -12,34 +12,45 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import library.entities.Book;
+import library.entities.NewBook;
 import library.services.BookService;
+import library.services.FindService;
 
 @Controller
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
-	private Book book;
+	@Autowired FindService findService;
 	
-	/*@RequestMapping(path = "book/getall", method = RequestMethod.GET)
-	public @ResponseBody List<Book> getAllBook() {		
+	private NewBook book;
+	
+	
+	@RequestMapping(path = "book/get", method = RequestMethod.GET)
+	public @ResponseBody NewBook getBook(@RequestParam(required = true) String id) {		
+		return findService.getBook(Integer.valueOf(id));
+	}
+		
+	@RequestMapping(path = "book/getall", method = RequestMethod.GET)
+	public @ResponseBody List<NewBook> getAllBook() {		
 		return bookService.getAllBook();
-	}*/
+	}
 	
-/*	@RequestMapping(path = "book/add", method = RequestMethod.POST)
+	@RequestMapping(path = "book/add", method = RequestMethod.POST)
 	public @ResponseBody Boolean addBook(HttpServletRequest request) {
 		
-		int idBook = Integer.valueOf(request.getParameter("idBook"));
-		String title = request.getParameter("title");
-		String publishingHouse = request.getParameter("publishingHouse");
+		int id = Integer.valueOf(request.getParameter("id"));
+		String title = request.getParameter("title").toString();
+		String publishingHouse = request.getParameter("publishingHouse").toString();
 		int years = Integer.valueOf(request.getParameter("years"));
 		int pageNumber = Integer.valueOf(request.getParameter("pageNumber"));
 		
-		book = new Book(idBook, title, publishingHouse, years, pageNumber);
+		book = new NewBook(id, title, publishingHouse, years, pageNumber);
 		
 		return bookService.addBook(book);
 	}
 	
+/*
 	@RequestMapping(path = "book/update", method = RequestMethod.POST)
 	public @ResponseBody Boolean updateBook(@RequestParam(required = true) String idBook, HttpServletRequest request) {
 		
