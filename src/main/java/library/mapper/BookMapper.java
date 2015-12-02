@@ -25,4 +25,7 @@ public interface BookMapper {
 	
 	@Delete("Delete From books Where id = #{id}")
 	public Boolean deleteBook(Integer id);
+
+	@Select("Select * From books join booksInUse on booksInUse.id_book=books.id join users on  booksInUse.id_user = users.id Where users.id=#{id}")
+	public List<Book> getBooksUser(Integer id);
 }

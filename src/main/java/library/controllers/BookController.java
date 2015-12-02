@@ -22,6 +22,12 @@ public class BookController {
 	private BookService bookService;
 
 	private Book book;
+	
+	@RequestMapping(value = "/books/user/{id}/", method = RequestMethod.POST)
+	public @ResponseBody List<Book> getBooksUser(@PathVariable Integer id) {
+
+		return bookService.getBooksUser(id);
+	}
 
 	@RequestMapping(value = "/books/book/{id}", method = RequestMethod.GET)
 	public @ResponseBody Book getBook(@PathVariable Integer id) {

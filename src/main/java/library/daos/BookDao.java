@@ -72,4 +72,12 @@ public class BookDao {
 		}
 	}
 
+	public List<Book> getBooksUser(Integer id) {
+		try {
+			return component.dbComponent().getBooksUser(id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

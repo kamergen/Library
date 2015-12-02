@@ -14,6 +14,7 @@ public class DBComponentForBook {
 		ctx.register(DataConfig.class);
 		ctx.refresh();
 		BookMapper mapper = ctx.getBean(BookMapper.class);
+		ctx.close();
 		return mapper;
 	}
 }

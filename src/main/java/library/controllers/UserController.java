@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import library.entities.Book;
 import library.entities.BookInUse;
 import library.entities.User;
 import library.services.RegestrarionService;
@@ -39,7 +40,7 @@ public class UserController {
 	public @ResponseBody List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
-
+	
 	@RequestMapping(value = "/users/user/search", method = RequestMethod.POST)
 	public @ResponseBody List<User> getUsersSearch(HttpServletRequest request) {
 

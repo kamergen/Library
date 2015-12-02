@@ -28,6 +28,10 @@ public class UserService {
 		return userDao.getUser(id);
 	}
 	
+	public User login(String email, String password) {				
+		return userDao.login(email,password);
+	}
+	
 	public String takeBook(BookInUse bookInUse) {
 		return userDao.takeBook(bookInUse);
 	}

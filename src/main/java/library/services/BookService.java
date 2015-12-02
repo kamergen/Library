@@ -37,4 +37,8 @@ public class BookService {
 		return bookDao.getBook(id);
 	}
 
+	public List<Book> getBooksUser(Integer id) {
+		return bookDao.getBooksUser(id);
+	}
+
 }

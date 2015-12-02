@@ -18,7 +18,7 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationService authService;
 	
-	@RequestMapping(value = "/user/login/", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
 	public @ResponseBody User login(HttpServletRequest request) {		
 		
 		String email = request.getParameter("email");
