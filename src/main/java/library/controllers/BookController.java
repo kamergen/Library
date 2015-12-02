@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import library.entities.Author;
-import library.entities.AuthorLists;
 import library.entities.Book;
 import library.services.BookService;
 
@@ -39,11 +37,11 @@ public class BookController {
 	public @ResponseBody String addBook(HttpServletRequest request) {
 
 		int idBook = Integer.valueOf(request.getParameter("id"));
-		String title = request.getParameter("title").toString();
-		String publishingHouse = request.getParameter("publishingHouse").toString();
+		String title = request.getParameter("title");
+		String publishingHouse = request.getParameter("publishingHouse");
 		int years = Integer.valueOf(request.getParameter("years"));
 		int pageNumber = Integer.valueOf(request.getParameter("pageNumber"));
-		String author = request.getParameter("author").toString();
+		String author = request.getParameter("author");
 		book = new Book(idBook, title, author, publishingHouse, years, pageNumber);
 		
 		return bookService.addBook(book);

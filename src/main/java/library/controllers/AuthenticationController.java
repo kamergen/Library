@@ -1,5 +1,7 @@
 package library.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,10 +18,12 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationService authService;
 	
-/*	@RequestMapping(path = "auth/login", method = RequestMethod.GET)
-	public @ResponseBody User login(@RequestParam(required = true) String email, 
-			@RequestParam(required = true) String password ) {		
+	@RequestMapping(value = "/user/login/", method = RequestMethod.POST)
+	public @ResponseBody User login(HttpServletRequest request) {		
+		
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		return authService.login(email, password);
-	}*/
+	}
 
 }

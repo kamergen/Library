@@ -83,4 +83,12 @@ public class UserDao {
 		}
 		return null;
 	}
+
+	public User login(String email, String password) {
+		try {
+			return component.dbComponent().login(email, password);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }
