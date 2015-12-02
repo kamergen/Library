@@ -7,21 +7,21 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import library.entities.NewBook;
+import library.entities.Book;
 
 public interface BookMapper {
 
 	@Select("Select * From books Where id = #{id}")
-	public NewBook getBook(Integer id);
+	public Book getBook(Integer id);
 
 	@Select("Select * From books")
-	public List<NewBook> getAllBook();
+	public List<Book> getAllBook();
 	
 	@Insert("INSERT INTO books(title,publishingHouse,years,pageNumber) values (#{title},#{publishingHouse},#{years},#{pageNumber})")
-	public Boolean addBook(NewBook books);
+	public Boolean addBook(Book books);
 
 	@Update("Update books set title = #{title},publishingHouse = #{publishingHouse},years = #{years},pageNumber = #{pageNumber} Where id = #{id}")
-	public Boolean updateBook(NewBook book);
+	public Boolean updateBook(Book book);
 	
 	@Delete("Delete From books Where id = #{id}")
 	public Boolean deleteBook(Integer id);

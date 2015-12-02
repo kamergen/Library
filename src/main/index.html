@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Reaxys WebSocket</title>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <link href="assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/lib/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="assets/common/portfolio.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div id="heading" class="masthead">
+        <h3 class="muted">Reaxys Test</h3>
+        <span class="bg-danger" id="error"></span>
+    </div>
+    <div>
+        <div class="container">
+            <form role="form">
+                <div class="form-group">
+                    <label for="host" class="col-sm-2 control-label">Host:</label>
+                    <div class="col-sm-10">
+                        <input id="host" class="form-control" type="text" placeholder="Host name"
+                               value="http://10.66.9.250:8080">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="token" class="col-sm-2 control-label">Access token:</label>
+                    <div class="col-sm-10">
+                        <input id="token" class="form-control" type="text" placeholder="access token">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content" class="col-sm-2 control-label">Content:</label>
+                    <div class="col-sm-10">
+                        <input id="content" class="form-control" placeholder="Content" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="query" class="col-sm-2 control-label">Structure:</label>
+                    <div class="col-sm-10">
+                        <textarea id="structure" rows="10"
+                                  class="form-control" placeholder="Structure" type="text"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="query" class="col-sm-2 control-label">Query id:</label>
+                    <div class="col-sm-10">
+                        <input id="query" class="form-control" placeholder="Content" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br><br>
+        <div class="btn btn-default" id="hello">Hello</div>
+        <div class="btn btn-default" id="ping">Ping</div>
+        <div class="btn btn-success" id="connect">Connect</div>
+        <div class="btn btn-danger" id="disconnect">Disconnect</div>
+        <div class="btn btn-info" id="start">Open WebSocket</div>
+        <div class="btn btn-success" id="send">Search</div>
+        <div class="btn btn-default" id="cancel">Cancel Query</div>
+        <div class="btn btn-default" id="contentOverview">Content Overview</div>
+        <div class="container">
+            <div id="startStatus" class="bg-success"></div>
+            <div id="sendStatus" class="bg-success"></div>
+            <div id="cancelStatus" class="bg-success"></div>
+        </div>
+    </div>
+    <div class="container" id="result"></div>
+</div>
+
+<!-- 3rd party -->
+<script src="assets/lib/jquery/jquery.js"></script>
+<script src="assets/lib/sockjs/sockjs-1.0.3.js"></script>
+<script src="assets/lib/stomp/lib/stomp.min.js"></script>
+
+
+<!-- application -->
+<script src="portfolio.js"></script>
+<script type="text/javascript">
+    (function () {
+        var appModel = new ApplicationModel();
+        appModel.connect();
+        appModel.startSearch();
+        appModel.cancelSearch();
+        appModel.contentOverview();
+    })();
+</script>
+
+</body>
+</html>

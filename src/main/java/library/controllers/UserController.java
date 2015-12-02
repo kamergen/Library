@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import library.entities.BookInUse;
 import library.entities.User;
 import library.services.RegestrarionService;
+import library.services.SearchService;
 import library.services.UserService;
 
 @Controller
@@ -24,21 +26,32 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private RegestrarionService regestrarion;
-
+	@Autowired
+	private SearchService search;
 	private User user;
 
-	@RequestMapping(path = "user/get", method = RequestMethod.GET)
-	public @ResponseBody User getUsers(@RequestParam(required = true) String id) {
+	@RequestMapping(value = "/users/user/{id}/", method = RequestMethod.GET)
+	public @ResponseBody User getUsers(@PathVariable Integer id) {
 		return userService.getUser(Integer.valueOf(id));
 	}
-	
-	@RequestMapping(path = "user/getall", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/users/user/all", method = RequestMethod.GET)
 	public @ResponseBody List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
 
-	@RequestMapping(path = "user/add", method = RequestMethod.POST)
-	public @ResponseBody Boolean addUser(HttpServletRequest request) {
+	@RequestMapping(value = "/users/user/search", method = RequestMethod.POST)
+	public @ResponseBody List<User> getUsersSearch(HttpServletRequest request) {
+		
+		int id = Integer.valueOf(request.getParameter("id"));
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		
+		return search.usersSearch(id,firstName,lastName);
+	}
+	
+	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
+	public @ResponseBody String addUser(HttpServletRequest request) {
 
 		int id = Integer.valueOf(request.getParameter("id"));
 		String firstName = request.getParameter("firstName");
@@ -53,13 +66,13 @@ public class UserController {
 		return regestrarion.addUser(user);
 	}
 
-	@RequestMapping(path = "user/passBook", method = RequestMethod.DELETE)
-	public @ResponseBody Boolean passBook(@RequestParam(required = true) Integer id) {
+	@RequestMapping(value = "/user/passBook", method = RequestMethod.DELETE)
+	public @ResponseBody String passBook(@RequestParam(required = true) Integer id) {
 		return userService.passBook(id);
 	}
-	
-	@RequestMapping(path = "librarian/takeBook", method = RequestMethod.POST)
-	public @ResponseBody Boolean takeBook(HttpServletRequest request) {
+
+	@RequestMapping(value = "/user/takeBook", method = RequestMethod.POST)
+	public @ResponseBody String takeBook(HttpServletRequest request) {
 
 		int id = Integer.valueOf(request.getParameter("id"));
 		int id_user = Integer.valueOf(request.getParameter("id_user"));
@@ -80,9 +93,9 @@ public class UserController {
 
 		return userService.takeBook(bookInUse);
 	}
-	
-	@RequestMapping(path = "user/delete", method = RequestMethod.DELETE)
-	public @ResponseBody Boolean deleteUser(@RequestParam(required = true) String id) {
+
+	@RequestMapping(value = "/user/delete", method = RequestMethod.DELETE)
+	public @ResponseBody String deleteUser(@RequestParam(required = true) String id) {
 		return userService.deleteUser(Integer.valueOf(id));
 	}
 

@@ -2,94 +2,74 @@ package library.daos;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
 import library.DataConfig;
-import library.entities.NewBook;
+import library.entities.Book;
 import library.mapper.BookMapper;
+import library.services.DBComponentForBook;
 
 @Repository
 public class BookDao {
 
-	public NewBook getBook(Integer id) {
+	@Autowired
+	private DBComponentForBook component;
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		BookMapper mapper = ctx.getBean(BookMapper.class);
-
-		NewBook book = mapper.getBook(id);
-		ctx.close();
-		return book;
-	}
-
-	public Boolean addBook(NewBook book) {
-
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		BookMapper mapper = ctx.getBean(BookMapper.class);
+	public Book getBook(Integer id) {
 
 		try {
-			ctx.close();
-			mapper.addBook(book);
-
-			return true;
+			Book book = component.dbComponent().getBook(id);
+			component.dbComponent();
+			return book;
 
 		} catch (Exception e) {
-			ctx.close();
-			return false;
+			return null;
 		}
 	}
 
-	public Boolean updateBook(NewBook book) {
-
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		BookMapper mapper = ctx.getBean(BookMapper.class);
+	public String addBook(Book book) {
 
 		try {
-			ctx.close();
-			mapper.updateBook(book);
-			return true;
+			component.dbComponent().addBook(book);
+			return "success: book added";
 
 		} catch (Exception e) {
-			ctx.close();
-			return false;
+
+			return "error: the book is not added";
 		}
 	}
 
-	public Boolean deleteBook(Integer id) {
-
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		BookMapper mapper = ctx.getBean(BookMapper.class);
+	public String updateBook(Book book) {
 
 		try {
-			ctx.close();
-			mapper.deleteBook(id);
-
-			return true;
+			component.dbComponent().updateBook(book);
+			return "success: book changed";
 
 		} catch (Exception e) {
-			ctx.close();
-			return false;
+			return "error: the book is not changed";
 		}
 	}
 
-	public List<NewBook> getAllBook() {
+	public String deleteBook(Integer id) {
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		BookMapper mapper = ctx.getBean(BookMapper.class);
+		try {
+			component.dbComponent().deleteBook(id);
+			return "success: dook deleted";
+		} catch (Exception e) {
+			return "error: the book is not deleted";
+		}
+	}
 
-		List<NewBook> books = mapper.getAllBook();
-		ctx.close();
-		return books;
+	public List<Book> getAllBook() {
+		try {
+
+			List<Book> books = component.dbComponent().getAllBook();
+			return books;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

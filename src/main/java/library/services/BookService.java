@@ -7,36 +7,34 @@ import org.springframework.stereotype.Service;
 
 import library.daos.BookDao;
 import library.entities.Book;
-import library.entities.NewBook;
 
 @Service
 public class BookService {
 
 	@Autowired
-	private BookDao bookDao; 
-	
-	public Boolean addBook(NewBook book) {
+	private BookDao bookDao;
+
+	public String addBook(Book book) {
 
 		return bookDao.addBook(book);
 	}
-	
-	public Boolean updateBook(NewBook book) {
+
+	public String updateBook(Book book) {
 		return bookDao.updateBook(book);
 	}
 
-	public Boolean deleteBook(Integer id) {
+	public String deleteBook(Integer id) {
 
 		return bookDao.deleteBook(id);
 	}
-	public List<NewBook> getAllBook() {
+
+	public List<Book> getAllBook() {
 		return bookDao.getAllBook();
 	}
 
-	public NewBook getBook(Integer id) {
+	public Book getBook(Integer id) {
 
 		return bookDao.getBook(id);
 	}
 
-	
-	
 }

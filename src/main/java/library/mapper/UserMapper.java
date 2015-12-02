@@ -14,6 +14,9 @@ public interface UserMapper {
 	@Select("Select * From users Where id = #{id}")
 	public User getUser(Integer id);
 
+	@Select("Select * From users Where <if id!=null> id = #{id}</if> <if firstName!=''> AND firstName = #{firstName}</if> <if lastName != null>AND lastName = #{lastName}</if> ")
+	public List<User> usersSearch(Integer id, String firstName, String lastName);
+
 	@Select("Select * From users")
 	public List<User> getAllUser();
 
@@ -22,12 +25,11 @@ public interface UserMapper {
 
 	@Delete("Delete From users Where id = #{id}")
 	public Boolean deleteUser(Integer id);
-	
+
 	@Delete("Delete From booksInUse Where id = #{id}")
 	public Boolean passBook(Integer id);
-	
+
 	@Insert("INSERT INTO booksInUse (id_user,id_book,bookStatus,startDate,endDate) value (#{id_user},#{id_book},#{bookStatus},#{startDate},#{endDate})")
 	public Boolean takeBook(BookInUse bookInUse);
-	
-	
+
 }

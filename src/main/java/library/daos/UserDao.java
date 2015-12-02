@@ -2,89 +2,85 @@ package library.daos;
 
 import java.util.List;
 
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import library.DataConfig;
 import library.entities.BookInUse;
 import library.entities.User;
-import library.mapper.UserMapper;
+import library.services.DBComponentForUser;
 
 @Repository
 public class UserDao {
 
+	@Autowired
+	private DBComponentForUser component;
+
 	public List<User> getAllUsers() {
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
-
-		List<User> users = mapper.getAllUser();
-		ctx.close();
-
-		return users;
-	}
-
-	public Boolean deleteUser(int id) {
-
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
 		try {
-			mapper.deleteUser(id);
-			ctx.close();
-			return true;
-
+			List<User> users = component.dbComponent().getAllUser();
+			return users;
 		} catch (Exception e) {
-			ctx.close();
-			return false;
+			return null;
 		}
 	}
 
-	public Boolean addUser(User user) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
+	public String deleteUser(int id) {
 
-		mapper.addUser(user);
-		ctx.close();
-		return true;
+		try {
+			component.dbComponent().deleteUser(id);
+			return "success: user deleted";
+
+		} catch (Exception e) {
+			return "error: the user is not deleted";
+		}
 	}
 
-	public Boolean takeBook(BookInUse bookInUse) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
-
-		mapper.takeBook(bookInUse);
-		ctx.close();
-		return true;
+	public String addUser(User user) {
+		try {
+			component.dbComponent().addUser(user);
+			return "success: user added";
+		} catch (Exception e) {
+			return "error: the user is not added";
+		}
 	}
-	
+
+	public String takeBook(BookInUse bookInUse) {
+
+		try {
+			component.dbComponent().takeBook(bookInUse);
+			return "success: book taken";
+		} catch (Exception e) {
+			return "error: the book is not taken";
+		}
+	}
+
 	public User getUser(Integer id) {
+		try {
+			User user = component.dbComponent().getUser(id);
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
 
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
-		
-		User user = mapper.getUser(id);
-		ctx.close();
-		
-		return user;
 	}
 
-	public Boolean passBook(Integer id) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
-		ctx.register(DataConfig.class);
-		ctx.refresh();
-		UserMapper mapper = ctx.getBean(UserMapper.class);
-		
-		mapper.passBook(id);		
-		return true;
+	public String passBook(Integer id) {
+		try {
+			component.dbComponent().passBook(id);
+			return "success: book passed";
+		} catch (Exception e) {
+			return "error: the book not passed";
+		}
+
+	}
+
+	public List<User> usersSearch(int id, String firstName, String lastName) {
+
+		try {
+			return component.dbComponent().usersSearch(id, firstName, lastName);
+		} catch (Exception e) {
+		}
+		return null;
 	}
 }

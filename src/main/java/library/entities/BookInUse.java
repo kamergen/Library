@@ -21,6 +21,9 @@ public class BookInUse {
 		this.endDate = endDate;
 	}
 
+	public BookInUse() {
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -90,7 +93,5 @@ public class BookInUse {
 			return false;
 		return true;
 	}
-	
-	
 
 }

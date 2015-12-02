@@ -15,7 +15,7 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	public Boolean deleteUser(Integer id) {
+	public String deleteUser(Integer id) {
 
 		return userDao.deleteUser(id);
 	}
@@ -28,11 +28,12 @@ public class UserService {
 		return userDao.getUser(id);
 	}
 	
-	public Boolean takeBook(BookInUse bookInUse) {
+	public String takeBook(BookInUse bookInUse) {
 		return userDao.takeBook(bookInUse);
 	}
 
-	public Boolean passBook(Integer id) {
+	public String passBook(Integer id) {
 		return userDao.passBook(id);
 	}
+
 }
