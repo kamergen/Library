@@ -14,9 +14,9 @@ public class SearchService {
 	@Autowired
 	private UserDao userDao;
 
-	public List<User> usersSearch(int id, String firstName, String lastName) {
+	public List<User> usersSearch(String firstName) {
 
-		return userDao.usersSearch(id,firstName,lastName);
+		return userDao.usersSearch(firstName);
 	}
 	
 	

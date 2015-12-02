@@ -30,15 +30,14 @@ public class GreetingController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		return users.findOne(1);
 	}
-
-	@RequestMapping("/greeting-javaconfig")
+*/
+	/*@RequestMapping("/greeting-javaconfig")
 	public @ResponseBody Greeting greetingWithJavaconfig(
 			@RequestParam(required = false, defaultValue = "World") String name) {
 		System.out.println("==== in greeting ====");
 
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	}
-*/
+	}*/
 }
 
 @Controller

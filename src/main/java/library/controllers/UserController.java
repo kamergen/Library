@@ -42,14 +42,12 @@ public class UserController {
 
 	@RequestMapping(value = "/users/user/search", method = RequestMethod.POST)
 	public @ResponseBody List<User> getUsersSearch(HttpServletRequest request) {
-		
-		int id = Integer.valueOf(request.getParameter("id"));
+
 		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		
-		return search.usersSearch(id,firstName,lastName);
+
+		return search.usersSearch(firstName);
 	}
-	
+
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public @ResponseBody String addUser(HttpServletRequest request) {
 

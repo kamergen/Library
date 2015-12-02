@@ -75,10 +75,10 @@ public class UserDao {
 
 	}
 
-	public List<User> usersSearch(int id, String firstName, String lastName) {
+	public List<User> usersSearch(String firstName) {
 
 		try {
-			return component.dbComponent().usersSearch(id, firstName, lastName);
+			return component.dbComponent().usersSearch(firstName);
 		} catch (Exception e) {
 		}
 		return null;

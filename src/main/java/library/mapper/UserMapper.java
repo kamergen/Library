@@ -14,8 +14,8 @@ public interface UserMapper {
 	@Select("Select * From users Where id = #{id}")
 	public User getUser(Integer id);
 
-	@Select("Select * From users Where <if id!=null> id = #{id}</if> <if firstName!=''> AND firstName = #{firstName}</if> <if lastName != null>AND lastName = #{lastName}</if> ")
-	public List<User> usersSearch(Integer id, String firstName, String lastName);
+	@Select("Select * From users Where firstName = #{firstName}")
+	public List<User> usersSearch(String firstName);
 
 	@Select("Select * From users")
 	public List<User> getAllUser();
