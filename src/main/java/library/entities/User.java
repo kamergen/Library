@@ -1,9 +1,6 @@
 
 package library.entities;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
 public class User {
 
 	private Integer id;
@@ -13,9 +10,14 @@ public class User {
 	private String avatar;
 	private String email;
 	private String role;
-	
-	public User(){
-		
+
+	public User() {
+
+	}
+
+	public User(String password, String email) {
+		this.password = password;
+		this.email = email;
 	}
 
 	public User(Integer id, String firstName, String lastName, String password, String avatar, String email,
@@ -110,5 +112,4 @@ public class User {
 		this.role = role;
 	}
 
-	
 }

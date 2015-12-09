@@ -32,7 +32,7 @@ public interface UserMapper {
 	@Insert("INSERT INTO booksInUse (id_user,id_book,bookStatus,startDate,endDate) value (#{id_user},#{id_book},#{bookStatus},#{startDate},#{endDate})")
 	public Boolean takeBook(BookInUse bookInUse);
 
-	@Select("Select * From users Where email = 'vasya@gmail.com'")
-	public User login(String email, String password);
+	@Select("Select * From users Where email = #{email} AND password = #{password}")
+	public User login(User user);
 
 }
