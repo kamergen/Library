@@ -187,34 +187,25 @@
 	<section id="myBooks" class="user" style="height: 980px;">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="section-subheading text-muted">Do not forget to
-						hand over books.</h2>
-					<h3 class="section-heading">Your Books</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div>
+				<div style="margin-top:40px;">
 					<img class="imgAvatar" id="photoUsers"/>
 				</div>
                 <div id="nameUsers"></div>
 			</div>
-			<div class="row" style="margin-top: 50px;">
-				<div style="height: 50px; width: 150px; float: left;">
-					<ul id="booksUser">
-						<li></li>
-					</ul>
+			<div class="row" style="width:900px; margin-top: 50px;">
+				<div class="col-lg-12 text-left" style="height: 40px;">
+					<h3 class="section-subheading text-muted" >Your Books</h3>
 				</div>
-				<div style="height: 50px; width: 150px; float: left;">
-					<ul id="booksAuthor">
-						<li></li>
-					</ul>
-				</div>
-				<div style="height: 50px; width: 150px; float: left;">
-					<ul id="publish">
-						<li></li>
-					</ul>
-				</div>
+                <div class="col-lg-12 text-center">
+                    <div class="booksHead">
+                        <div class="">Title</div>
+                        <div>Author</div>
+                        <div>Publishing House</div>
+                        <div>Years</div>
+                        <div>Page Number</div>
+                    </div>
+                    <div class="booksUser"></div>
+                </div>
 			</div>
 
 		</div>
@@ -228,6 +219,18 @@
 					<h2 class="section-heading">Search</h2>
 				</div>
 			</div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="booksHead">
+                        <div class="">Title</div>
+                        <div>Author</div>
+                        <div>Publishing House</div>
+                        <div>Years</div>
+                        <div>Page Number</div>
+                    </div>
+                    <div class="allBooks"></div>
+                </div>
+            </div>
 		</div>
 	</section>
 
@@ -269,6 +272,7 @@
 	    var user;
 	    $(document).ready(function () {
 	        debugger;
+	        getAllBooks();
 	        if ($.cookie("userInfo") == "NaN")
 	            $.cookie("userInfo", "null")
 	        if ($.cookie("userInfo") == "null" || $.cookie("userInfo") == null) {
@@ -294,6 +298,22 @@
 	            $("#nameUsers").text(data.firstName + "  " + data.lastName);
 	        });
 	    }
+	    function getAllBooks() {
+	        var url = "http://localhost:8080/books/all";
+	        var request = $.get(url);
+	        request.done(function(dataBooks) {
+	            $.each(dataBooks, function view(i) {
+	                debugger;
+	                $('.allBooks').append('<div class="books bookItemAll' + i + '"></div>');
+	                $('.bookItemAll' + i).append('<div class="title Book">' + dataBooks[i].title + '</div>');
+	                $('.bookItemAll' + i).append('<div class="author Book">' + dataBooks[i].author + '</div>');
+	                $('.bookItemAll' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
+	                $('.bookItemAll' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
+	                $('.bookItemAll' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>')
+	            });
+	        });
+	    }
+
 	    $('#btnSendData').click(function (e) {
 	        debugger
 	        var emaiReg = $("#txtEmail").val();
@@ -392,15 +412,54 @@
 		        var cList = $(' #booksUser');
 		        $.each(dataBooks, function view(i) {
 		            debugger;
-                    var li = $('<li/>').addClass('ui-menu-item').attr('role', 'menuitem')
-                            .appendTo(cList);
-		            var aaa = $('<a/>').addClass('ui-all').text(
-                            dataBooks[i].title + "         " + dataBooks[i].author + "         " + dataBooks[i].publishingHouse).appendTo(li);
+		            $('.booksUser').append('<div class="books bookItem' + i + '"></div>');
+		            $('.bookItem' + i).append('<div class="title Book">' + dataBooks[i].title + '</div>');
+		            $('.bookItem' + i).append('<div class="author Book">' + dataBooks[i].author + '</div>');
+		            $('.bookItem' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
+		            $('.bookItem' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
+		            $('.bookItem' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>')
 		        });
 		    });
 		}
     </script>
 <style>
+    .booksHead div {
+        width: 155px;
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        border-bottom:#fed136 solid 1px;
+    }
+    .booksHead {
+        margin-top:15px;
+        font-size:15px;
+    }
+    .booksUser {
+        padding-top:30px;
+    }
+    .allBooks {
+        padding-top:30px;
+    }
+    .books {
+        width:100%;
+        float:left;
+    }
+    .Book {
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        width: 155px;
+    }
+    .pageNumber {
+        width: 155px;
+        margin-left: 15px;
+        float: left;
+    }
+    #nameUsers {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #777;
+    }
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -430,7 +489,9 @@
     li {
         list-style-type: none;
     }
-
+    .navbar-default .nav li a {
+        color:#777;
+    }
     #login {
         background-color: #F0F0F0;
     }
