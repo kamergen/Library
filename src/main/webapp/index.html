@@ -190,19 +190,14 @@
 				<div class="col-lg-12 text-center">
 					<h2 class="section-subheading text-muted">Do not forget to
 						hand over books.</h2>
-					<h3 class="section-heading">You Books</h3>
+					<h3 class="section-heading">Your Books</h3>
 				</div>
 			</div>
 			<div class="row">
-				<div id="nameUsers"></div>
 				<div>
-					<img id="photoUsers"/>
+					<img class="imgAvatar" id="photoUsers"/>
 				</div>
-			</div>
-			<div class="col-lg-12">
-				<div></div>
-				<button type="submit" id="getMyBooks" class="btn btn-xl">You
-					Books</button>
+                <div id="nameUsers"></div>
 			</div>
 			<div class="row" style="margin-top: 50px;">
 				<div style="height: 50px; width: 150px; float: left;">
@@ -272,44 +267,62 @@
 
 	<script type="text/javascript">
 	    var user;
-	    var imgAvatar;
-	    $('#btnSendData').click(function () {
+	    $(document).ready(function () {
+	        debugger;
+	        if ($.cookie("userInfo") == "NaN")
+	            $.cookie("userInfo", "null")
+	        if ($.cookie("userInfo") == "null" || $.cookie("userInfo") == null) {
+	            $('.nav li').hide()
+	            $('#registr').show();
+	            $('#login').show();
+	        }
+	        else if ($.cookie("userInfo") != "null") {
+	            $('.nav li').show()
+	            $('#registr').hide();
+	            $('#login').hide();
+	        }
+	        if ($.cookie("userInfoid")) {
+	            getbooksUser($.cookie("userInfoid"));
+	            getUsers($.cookie("userInfoid"));
+	        }
+	    });
+	    function getUsers(id) { 
+	        var url = "http://localhost:8080/users/user/" + id + "/";
+	        var request = $.get(url);
+	        request.done(function (data) {
+	            $("#photoUsers").attr("src", data.avatar);
+	            $("#nameUsers").text(data.firstName + "  " + data.lastName);
+	        });
+	    }
+	    $('#btnSendData').click(function (e) {
 	        debugger
 	        var emaiReg = $("#txtEmail").val();
 	        var passwordReg = $("#txtPassword").val();
 	        var firstNameReg = $("#txtFirstName").val();
 	        var lastNameReg = $("#txtLastName").val();
 	        var passwordAgain = $("#txtPasswordAgain").val();
-	        var imgAvatarReg;
+	        var imgAvatarReg = $('#imgLoad').attr('src');
 	        var role = "user";
 
 	        if (passwordReg != passwordAgain) {
 	            return;
 	        }
-	        if (imgAvatar == null) {
-	            imgAvatarReg = "";
-	        }
-	        else {
-	            imgAvatarReg = imgAvatar;
-	        }
-	        debugger;
-	        $.ajax(
-                {
-                    type:"post",
-                    url: "http://localhost:8080/user/add",
-                    data: {"we": 1, "firstName": "as", "lastName": "as", "password": "as", "avatar": "", "email": "as", "role": "user" },
-                    dataType: 'json'
-                }).always( function (data) {
-                        debugger;
-                        console.log(data);
-                    }
-                )
-	    //    $.post("http://localhost:8080/user/add",
-        //{ "id": 1, "firstName": "as", "lastName": "as", "password": "as", "avatar": "", "email": "as", "role": "user" }
-        //,"json").done(function (data) {
-        //    debugger;
-        //    window.location.href = "#myBooks"
-        //})
+	        var JSONObjectUser = {
+	            "id": 1,
+	            "firstName": firstNameReg,
+	            "lastName": lastNameReg,
+	            "password": passwordReg,
+	            "avatar": imgAvatarReg,
+	            "email": emaiReg,
+	            "role": role};
+	        var request = $.ajax({
+	        	  contentType: 'application/json',
+	        	  url: "http://localhost:8080/user/add",
+	        	  type: "POST",
+	        	  data: JSON.stringify(JSONObjectUser),
+	        	  dataType: "json"
+	        });
+	        request.done(userLogin(e, emaiReg, passwordReg))
 	    });
 	    function readURL(e) {
 	        e.preventDefault();
@@ -323,130 +336,104 @@
 	        }
 	    }
 	    $("#flAvatar").change(readURL);
-		$("#getMyBooks").click(
-            function getUser(user) {
-                var url = "http://localhost:8080/users/user/" + user.id + "/"
-                var posting = $.post(url, "json");
-                posting.done(function (userBook) {
-                    debugger;
-                    $("#nameUsers").text(userBook.firstName + "  " + userBook.lastName);
-                    $("#photoUsers").atr('href', userBook.photo);
-                });
-            }
-            );
-
-		$(document).ready(function() {
-
-		    if ($.cookie("userInfo") == "NaN")
-		        $.cookie("userInfo", "null")
-
-		    
-		    if ($.cookie("userInfo") == "null" || $.cookie("userInfo") == null) {
-
-				$('.nav li').hide()
-				$('#registr').show();
-				$('#login').show();
-		    }
-		    else if ($.cookie("userInfo") != "null") {
-
-		        $('.nav li').show()
-		        $('#registr').hide();
-		        $('#login').hide();
-		    }
-		});
-
+		
 		$("#exit").click(function() {
 			$.cookie("userInfo", "null");
-			location.reload()
+			location.reload();
 		});
-
+		
 		$("#sendBtn").click(
-            function userLogin(e) {
-                e.preventDefault();
-                console.log('dsdsd');
-                debugger;
+            function (e) {
                 var emailUs = $("#email").val();
                 var passwordUs = $("#password").val();
-                console.log(passwordUs);
-                $.post("http://localhost:8080/user/login/",
-                                    {
-                                        "email": emailUs,
-                                        "password": passwordUs
-                                    }
-                , "json").done(function (data) {
-                    debugger;
-                    user = data;
-                    $.cookie("userInfo", user.email + user.password);
-                    $.cookie("id", user.id);
-                    if ($.cookie("userInfo") != null) {
-                        $('#regist').hide();
-                        $('#login').hide();
-                        $('#exit').show();
-                        $('.nav li').show()
-                    }
-                    if (user != null) {
-                        console.log("");
-                        var url = "http://localhost:8080/books/user/" + data.id + "/"
-                        var posting = $.post(url, "json");
-                        posting
-                        .done(function getBooksUser(dataBooks) {
-                            var cList = $(' #booksUser');
-                            $.each(dataBooks, function view(i) {
-                                debugger;
-                                var li = $('<li/>').addClass('ui-menu-item').attr('role', 'menuitem')
-                                        .appendTo(cList);
-                                var aaa = $('<a/>').addClass('ui-all').text(
-                                        dataBooks[i].title + "         " + dataBooks[i].author
-                                                + "         " + dataBooks[i].publishingHouse).appendTo(
-                                        li);
-
-                            });
-                        }
-                        );
-                        debugger;
-                        if (user.role == "library") {
-                            $(".user").hide();
-                        }
-                        if (user.role == "user") {
-                            $(".librarian").hide();
-                        }
-                    }
-                });
-            }
-            );
-	</script>
-	<style>
+                userLogin(e, emailUs, passwordUs);
+            });
+		function userLogin(e, emailUss, passwordUss) {
+		    debugger;
+		    e.preventDefault();
+		    var JSONObject = {
+		        "password": passwordUss,
+		        "email": emailUss,
+		    }
+		    var request = $.ajax({
+		        contentType: 'application/json',
+		        url: "http://localhost:8080/user/login/",
+		        type: "POST",
+		        data: JSON.stringify(JSONObject),
+		        dataType: "json"
+		    });
+		    request.done(function (data) {
+		        user = data;
+		        $.cookie("userInfo", user.email + user.password, { expires: 7 });
+		        $.cookie("userInfoid", user.id, { expires: 7 });
+		        if ($.cookie("userInfo") != null) {
+		            $('#regist').hide();
+		            $('#login').hide();
+		            $('#exit').show();
+		            $('.nav li').show()
+		        }
+		        if (user != null) {
+		            getbooksUser(data.id);
+		            debugger;
+		            if (user.role == "library") {
+		                $(".user").hide();
+		            }
+		            if (user.role == "user") {
+		                $(".librarian").hide();
+		            }
+		        }
+		        location.reload();
+		    });
+		}
+		function getbooksUser(id) {
+		    var url = "http://localhost:8080/books/user/" + id + "/"
+		    var posting = $.post(url, "json");
+		    posting.done(function getBooksUser(dataBooks) {
+		        var cList = $(' #booksUser');
+		        $.each(dataBooks, function view(i) {
+		            debugger;
+                    var li = $('<li/>').addClass('ui-menu-item').attr('role', 'menuitem')
+                            .appendTo(cList);
+		            var aaa = $('<a/>').addClass('ui-all').text(
+                            dataBooks[i].title + "         " + dataBooks[i].author + "         " + dataBooks[i].publishingHouse).appendTo(li);
+		        });
+		    });
+		}
+    </script>
+<style>
     .btn-file {
-    position: relative;
-    overflow: hidden;
-}
-.btn-file input[type=file] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 100px;
-    text-align: right;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    outline: none;
-    background: white;
-    cursor: inherit;
-    display: block;
-}
+        position: relative;
+        overflow: hidden;
+    }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    .imgAvatar {
+        max-height:150px;
+    }
+    html, body {
+        overflow-y: hidden;
+    }
 
-html, body {
-	overflow-y: hidden;
-}
+    li {
+        list-style-type: none;
+    }
 
-li {
-	list-style-type: none; 
-}
-
-#login {
-	background-color: #F0F0F0;
-}
+    #login {
+        background-color: #F0F0F0;
+    }
 </style>
 
 </body>
