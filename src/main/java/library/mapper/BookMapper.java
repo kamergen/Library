@@ -14,7 +14,7 @@ public interface BookMapper {
 	@Select("Select * From books Where id = #{id}")
 	public Book getBook(Integer id);
 
-	@Select("Select * From books")
+	@Select("Select books.id, title, publishingHouse, years, pageNumber, bookStatus.name From booksInUse Join bookStatus On booksInUse.bookStatus = bookStatus.id Join books On books.id = booksInUse.id_book")
 	public List<Book> getAllBook();
 	
 	@Insert("INSERT INTO books(title,publishingHouse,years,pageNumber) values (#{title},#{publishingHouse},#{years},#{pageNumber})")
@@ -28,4 +28,7 @@ public interface BookMapper {
 
 	@Select("Select * From books join booksInUse on booksInUse.id_book=books.id join users on  booksInUse.id_user = users.id Where users.id=#{id}")
 	public List<Book> getBooksUser(Integer id);
+	
+	@Select("Select   Where books.id = #{id} Group By name")
+	public String getBookStatus(Integer id);
 }

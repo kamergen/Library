@@ -184,7 +184,7 @@
 		</div>
 	</div>
 
-	<section id="myBooks" class="user" style="height: 980px;">
+	<section id="myBooks" class="user" style="height: 1200px;">
 		<div class="container">
 			<div class="row">
 				<div style="margin-top:40px;">
@@ -192,7 +192,7 @@
 				</div>
                 <div id="nameUsers"></div>
 			</div>
-			<div class="row" style="width:900px; margin-top: 50px;">
+			<div class="row" style="width:1100px; margin-top: 50px;">
 				<div class="col-lg-12 text-left" style="height: 40px;">
 					<h3 class="section-subheading text-muted" >Your Books</h3>
 				</div>
@@ -227,6 +227,7 @@
                         <div>Publishing House</div>
                         <div>Years</div>
                         <div>Page Number</div>
+                        <div>Status</div>
                     </div>
                     <div class="allBooks"></div>
                 </div>
@@ -309,7 +310,8 @@
 	                $('.bookItemAll' + i).append('<div class="author Book">' + dataBooks[i].author + '</div>');
 	                $('.bookItemAll' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
 	                $('.bookItemAll' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
-	                $('.bookItemAll' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>')
+	                $('.bookItemAll' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>');
+	                $('.bookItemAll' + i).append('<div class="nameStatus Book">' + dataBooks[i].nameStatus + '</div>')
 	            });
 	        });
 	    }

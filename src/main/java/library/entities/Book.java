@@ -8,11 +8,18 @@ public class Book {
 	private int years;
 	private int pageNumber;
 	private String author;
-
-	public Book() {
-
+	private String nameStatus;
+	
+	public Book(int id, String title, String author, String publishingHouse, int years, int pageNumber, String nameStatus) {
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.publishingHouse = publishingHouse;
+		this.years = years;
+		this.pageNumber = pageNumber;
+		this.nameStatus = nameStatus;
 	}
-
+	
 	public Book(int id, String title, String author, String publishingHouse, int years, int pageNumber) {
 		this.id = id;
 		this.title = title;
@@ -70,4 +77,15 @@ public class Book {
 		this.pageNumber = pageNumber;
 	}
 
+	public String getNameStatus() {
+		return nameStatus;
+	}
+
+	public void setNameStatus(String nameStatus) {
+		this.nameStatus = nameStatus;
+	}
+
+	public Book() {
+
+	}
 }
