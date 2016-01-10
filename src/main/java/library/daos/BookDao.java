@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import library.DataConfig;
 import library.entities.Book;
+import library.entities.BookInUse;
+import library.entities.User;
 import library.mapper.BookMapper;
 import library.services.DBComponentForBook;
 
@@ -81,4 +83,19 @@ public class BookDao {
 		}
 	}
 
+	public List<Book> bookSearch(Book book) {
+			try {
+				return component.dbComponent().bookSearch(book);
+			} catch (Exception e) {
+			}
+			return null;
+	}
+
+	public BookInUse getBookStatus(Integer id) {
+		try {
+			return component.dbComponent().getBookStatus(id);
+		} catch (Exception e) {
+		}
+		return null;
+	}
 }

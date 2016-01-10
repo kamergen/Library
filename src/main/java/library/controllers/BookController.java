@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import library.entities.Book;
+import library.entities.BookInUse;
+import library.entities.User;
 import library.services.BookService;
+import library.services.SearchService;
 
 @Controller
 public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private SearchService search;
 
 	@RequestMapping(value = "/books/user/{id}/", method = RequestMethod.POST)
 	public @ResponseBody List<Book> getBooksUser(@PathVariable Integer id) {
@@ -29,12 +34,23 @@ public class BookController {
 	public @ResponseBody Book getBook(@PathVariable Integer id) {
 		return bookService.getBook(id);
 	}
+	
+	@RequestMapping(value = "/book/status/{id}", method = RequestMethod.GET)
+	public @ResponseBody BookInUse getBookStatus(@PathVariable Integer id) {
+		return bookService.getBookStatus(id);
+	}
 
 	@RequestMapping(value = "/books/all", method = RequestMethod.GET)
 	public @ResponseBody List<Book> getAllBook() {
 		return bookService.getAllBook();
 	}
 
+	@RequestMapping(value = "/books/book/search", method = RequestMethod.POST)
+	public @ResponseBody List<Book> getBooksSearch(@RequestBody Book book) {
+
+		return search.bookSearch(book);
+	}
+	
 	@RequestMapping(value = "/books/add", method = RequestMethod.POST)
 	public @ResponseBody String addBooks(@RequestBody Book book) {
 

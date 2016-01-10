@@ -8,19 +8,21 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import library.entities.Book;
+import library.entities.BookInUse;
+import library.entities.User;
 
 public interface BookMapper {
 
 	@Select("Select * From books Where id = #{id}")
 	public Book getBook(Integer id);
 
-	@Select("Select books.id, title, publishingHouse, years, pageNumber, bookStatus.name From booksInUse Join bookStatus On booksInUse.bookStatus = bookStatus.id Join books On books.id = booksInUse.id_book")
+	@Select("Select books.id, title,author, publishingHouse, years, pageNumber From books Order by title Desc")
 	public List<Book> getAllBook();
 	
-	@Insert("INSERT INTO books(title,publishingHouse,years,pageNumber) values (#{title},#{publishingHouse},#{years},#{pageNumber})")
+	@Insert("INSERT INTO books(title,author,publishingHouse,years,pageNumber) values (#{title},#{author},#{publishingHouse},#{years},#{pageNumber})")
 	public Boolean addBook(Book books);
 
-	@Update("Update books set title = #{title},publishingHouse = #{publishingHouse},years = #{years},pageNumber = #{pageNumber} Where id = #{id}")
+	@Update("Update books set title = #{title}, author = #{author}, publishingHouse = #{publishingHouse},years = #{years},pageNumber = #{pageNumber} Where id = #{id}")
 	public Boolean updateBook(Book book);
 	
 	@Delete("Delete From books Where id = #{id}")
@@ -29,6 +31,9 @@ public interface BookMapper {
 	@Select("Select * From books join booksInUse on booksInUse.id_book=books.id join users on  booksInUse.id_user = users.id Where users.id=#{id}")
 	public List<Book> getBooksUser(Integer id);
 	
-	@Select("Select   Where books.id = #{id} Group By name")
-	public String getBookStatus(Integer id);
+	@Select("Select * From booksInUse Where id_book = #{id}")
+	public BookInUse getBookStatus(Integer id);
+	
+	@Select("Select * From books Where title = #{title} OR author = #{author}")
+	public List<Book> bookSearch(Book book);
 }

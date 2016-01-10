@@ -33,8 +33,8 @@ public class UserService {
 		return userDao.takeBook(bookInUse);
 	}
 
-	public String passBook(Integer id) {
-		return userDao.passBook(id);
+	public String passBook(BookInUse bookInUse) {
+		return userDao.passBook(bookInUse);
 	}
 
 }

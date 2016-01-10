@@ -38,9 +38,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users/user/search", method = RequestMethod.POST)
-	public @ResponseBody List<User> getUsersSearch(@RequestParam String firstName) {
+	public @ResponseBody List<User> getUsersSearch(@RequestBody User user) {
 
-		return search.usersSearch(firstName);
+		return search.usersSearch(user);
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
@@ -50,8 +50,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/passBook", method = RequestMethod.DELETE)
-	public @ResponseBody String passBook(@RequestParam Integer id) {
-		return userService.passBook(id);
+	public @ResponseBody String passBook(@RequestBody BookInUse bookInUse) {
+		return userService.passBook(bookInUse);
 	}
 
 	@RequestMapping(value = "/user/takeBook", method = RequestMethod.POST)
