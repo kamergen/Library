@@ -694,7 +694,7 @@
 	                    $('.bookItem' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
 	                    $('.bookItem' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
 	                    $('.bookItem' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>')
-	                    $('.bookItem' + i).append('<button type="bottom" style="font-size: 12px; padding: 10px 20px;" id="btnPassBook' + i + '" class="btn btn-xl librarian">Pass</button>');
+	                    $('.bookItem' + i).append('<div class=""><button type="bottom" style="font-size: 12px; padding: 10px 20px;" id="btnPassBook' + i + '" class="btn btn-xl">Pass</button>');
 	                    $('#btnPassBook' + i + '').bind('click', function () {
 	                        debugger;
 	                        var JSONObject = {
