@@ -323,6 +323,14 @@
                         <div class="wrap">Publishing house: </div><div class="publishingHouseBook"></div>
                     </div>
                 </div>
+                <div class="row col-lg-12 text-left" style="width: 1100px; margin-top: 50px;">
+                    <input type="date" class="form-group" id="dateReserve"/> 
+                </div>
+                 <div class="row" style="width: 1100px; margin-top: 50px;">
+                     <div class="col-lg-12 text-right">
+                         <button type="submit" id="toReserve" class="btn btn-xl">To Reserve</button>
+                     </div>
+                 </div>
             </div>
             </div>
         </div>
@@ -633,11 +641,61 @@
 	                    $('.bookItemAll' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
 	                    $('.bookItemAll' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
 	                    $('.bookItemAll' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>');
-	                    $('.bookItemAll' + i).append('<div class="nameStatus Book">' + dataBooks[i].nameStatus + '</div>')
+	                    var url = "http://localhost:8080/book/status/" + dataBooks[i].id + "/";
+	                    var request = $.get(url);
+	                    request.done(function (dataBookInUse) {
+	                        debugger;
+	                        if (dataBookInUse) {
+	                            switch (dataBookInUse.bookStatus) {
+	                                case 1:
+	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> на руках</span></div>');
+	                                    break;
+	                                case 2:
+	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> в читальном зале</span></div>');
+	                                    break;
+	                                case 3:
+	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> забронирована</span></div>');
+	                                    break;
+	                                default:
+	                                    break;
+	                            }
+	                        }
+	                        else {
+	                            $('.bookItemAll' + i).append('<div class="nameStatus Book"><span>в ниличии</span></div>');
+	                        }
+	                    }
+	                    )
 	                    $('.bookItemAll' + i).append('<a href="#browsingBook" id="bookHref' + i + '" class="portfolio-link" data-toggle="modal"><button type="submit" style="font-size: 12px; padding: 10px 20px;" class="btn btn-xl">browsing</button></a>');
 	                    $('#bookHref' + i + '').bind('click', function () {
 	                        getBook(dataBooks[i].id);
 	                    })
+	                    $('#toReserve').bind('click',function(){
+	                        var url = "http://localhost:8080/user/takeBook";
+	                        var id_user = $.cookie("userInfoid");
+	                        var id_book = dataBooks[i].id;
+	                        var status = "3";
+	                        var DateTake = new Date($('#dateReserve').val());
+	                        var month = Number(DateTake.getMonth()) + 1;
+	                        var years = Number(DateTake.getFullYear());
+	                        if (month > 12) {
+	                            month = 1;
+	                            years = years + 1;
+	                        }
+	                        var endDate = '' + years + '-' + month + '-' + DateTake.getDate() + '';
+	                        var startDate = '' + DateTake.getFullYear() + '-' + DateTake.getMonth() + '-' + DateTake.getDate() + '';
+	                        var JSONObject = {
+	                            "id": 1,
+	                            "id_book": id_book,
+	                            "id_user": id_user,
+	                            "bookStatus": status,
+	                            "startDate": startDate,
+	                            "endDate": endDate
+	                        };
+	                        var request = takeBook(JSONObject);
+	                        request.done(function () {
+	                            location.reload();
+	                        })
+                        })
 	                });
 	            }
 	            else {
@@ -752,17 +810,21 @@
                 "startDate":startDate,
                 "endDate":endDate
 	        };
-	        var request = $.ajax({
+	        var request = takeBook(JSONObject);
+	            request.done(function () {
+	                location.reload();
+	            })
+	    });
+	    function takeBook(JSONObject) {
+	        $.ajax({
 	            contentType: 'application/json',
 	            url: "http://localhost:8080/user/takeBook",
 	            type: "POST",
 	            data: JSON.stringify(JSONObject),
 	            dataType: "json"
 	        });
-	        request.done(function () {
-	            location.reload();
-	        })
-	    });
+	    }
+
 	    $('#btnSearchBook').click(function () {
 	        debugger;
 	        var searchTitle = $("#searchTitle").val();
