@@ -25,6 +25,7 @@ public class Book {
 		this.author = author;
 	}
 
+	//TODO remove ID
 	public Book(int id, String title, String author, String publishingHouse, int years, int pageNumber) {
 		this.id = id;
 		this.title = title;

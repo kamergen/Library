@@ -7,7 +7,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String password;
-	private String avatar;
+	private byte[] avatar;
 	private String email;
 	private String role;
 
@@ -26,7 +26,7 @@ public class User {
 		this.email = email;
 	}
 
-	public User(Integer id, String firstName, String lastName, String password, String avatar, String email,
+	public User(Integer id, String firstName, String lastName, String password, byte[] avatar, String email,
 			String role) {
 		this.id = id;
 		this.firstName = firstName;
@@ -94,11 +94,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getAvatar() {
+	public byte[] getAvatar() {
 		return avatar;
 	}
 
-	public void setAvatar(String avatar) {
+	public void setAvatar(byte[] avatar) {
 		this.avatar = avatar;
 	}
 

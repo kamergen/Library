@@ -1,0 +1,127 @@
+    .message {
+        display:none;
+    }
+    .errorsMesage{
+    	display: none;
+    	top:10px;
+    	color:red;
+    }
+    .listBooksItem {
+        width:420px;
+    }
+    .listUsersItem {
+        width:420px;
+    }
+    .contentBook {
+        margin-bottom:25px;
+    }
+    .titleBook {
+        font-size: 25px;
+        color: #fed136;
+    }
+    .wrap {
+        float:left;
+    }
+    .booksHead div {
+        width: 155px;
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        border-bottom:#fed136 solid 1px;
+    }
+    .booksHead {
+        margin-top:15px;
+        font-size:15px;
+    }
+    .booksUser {
+        padding-top:30px;
+        cursor: pointer;
+    }
+    .allBooks {
+        padding-top:30px;
+    }
+    .books {
+        width:100%;
+        float:left;
+        
+    }
+    .Book {
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        width: 155px;
+    }
+
+
+    .usersHead div {
+        width: 155px;
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        border-bottom:#fed136 solid 1px;
+    }
+    .usersHead {
+        margin-top:15px;
+        font-size:15px;
+    }
+    .usersUser {
+        padding-top:30px;
+    }
+    .allUsers {
+        padding-top:30px;
+    }
+    .users {
+        width:100%;
+        float:left;
+    }
+    .User {
+        float: left;
+        margin-left: 15px;
+        text-align: left;
+        width: 155px;
+    }
+    .pageNumber {
+        width: 155px;
+        margin-left: 15px;
+        float: left;
+    }
+    .nameUsers {
+        margin-top: 5px;
+        font-size: 15px;
+        color: #777;
+    }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    .imgAvatar {
+        max-height:150px;
+    }
+    html, body {
+        overflow-y: hidden;
+    }
+
+    li {
+        list-style-type: none;
+    }
+    .navbar-default .nav li a {
+        color:#777;
+    }
+    #login {
+        background-color: #F0F0F0;
+    }

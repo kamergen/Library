@@ -5,40 +5,26 @@
 
 <meta charset="utf-8">
 <title>Library</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom Theme JavaScript -->
-<script src="js/agency.js"></script>
+	<!-- Custom CSS -->
+	<link href="css/agency.css" rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
+		type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+		rel="stylesheet" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+		rel='stylesheet' type='text/css'>
+	<link
+		href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+		rel='stylesheet' type='text/css'>
+	<link
+		href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+		rel='stylesheet' type='text/css'>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-<script src="jquery.cookie.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Plugin JavaScript -->
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="js/classie.js"></script>
-
-<!-- Contact Form JavaScript -->
-<script src="js/jqBootstrapValidation.js"></script>
-
-<!-- Custom CSS -->
-<link href="css/agency.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
-	rel="stylesheet" type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
-	rel='stylesheet' type='text/css'>
+	<link href="css/myLibraryCss.css" rel="stylesheet">
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
@@ -60,20 +46,15 @@
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li class="hidden"><a href="#page-top"></a></li>
-					<li class="user librarian" ><a class="page-scroll" href="#login">Login</a></li>
+					<li class="user librarian"><a class="page-scroll"
+						href="#login">Login</a></li>
 					<li class="user"><a class="page-scroll" href="#myBooks">My
 							books</a></li>
 					<li><a class="page-scroll" href="#books">Books</a></li>
-                    <li class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Search
-                        <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="page-scroll librarian" href="#searchUser">Search user</a></li>
-                            <li><a class="page-scroll " href="#searchBook">Search book</a></li>
-                        </ul>
-                    </li>
-                    <li class="librarian"><a class="page-scroll" href="#takeBooks">Take books</a></li>
+							<li><a class="page-scroll " href="#searchBook">Search
+									book</a></li>
+					<li class="librarian"><a class="page-scroll" href="#takeBooks">Take
+							books</a></li>
 					<li class="librarian"><a class="page-scroll" href="#users">Users</a></li>
 					<li id="exit"><a class="page-scroll" href="#login">Exit</a></li>
 				</ul>
@@ -99,12 +80,12 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<input type="text" class="form-control"
-										placeholder="Your Email *" id="email" required
+										placeholder="Your Email *" name="email" id="email" required
 										data-validation-required-message="Please enter your email addres.">
 									<p class="help-block text-danger"></p>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control"
+									<input type="password" name="password" class="form-control"
 										placeholder="Your Password *" id="password" required
 										data-validation-required-message="Please enter your password.">
 									<p class="help-block text-danger"></p>
@@ -118,6 +99,7 @@
 									<button type="submit" id="btnreg" class="btn btn-xl">Registration</button>
 								</a>
 							</div>
+							<div class="errorsMesage col-lg-12" id='errorlogin' >error, enter correct password and email</div>
 						</div>
 					</form>
 				</div>
@@ -136,280 +118,273 @@
 				<div class="row">
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
-                            <h2>registration form</h2>
-                            <div>
-                                <div class="col-lg-12 text-center" id="imgBlock">
-                                    <div style="height: 150px; width: 150px; border: solid 1px #f0f0f0">
-                                        <img id="imgLoad" src="#" alt="image" style="display: none; height: 150px; width: 150px;" />
-                                    </div>
-                                    <div style="margin-top: 10px; height: 50px; width: 70px;">
-                                        <span class="btn btn-default btn-file">Browse
-                                            <input type="file" id="flAvatar">
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group" style="margin:auto; width:500px">
+							<h2>registration form</h2>
+							<div>
+								<div class="col-lg-12 text-center" id="imgBlock">
+									<div
+										style="height: 150px; width: 150px; border: solid 1px #f0f0f0">
+										<img id="imgLoad" src="#" alt="image"
+											style="display: none; height: 150px; width: 150px;" />
+									</div>
+									<div style="margin-top: 10px; height: 50px; width: 70px;">
+										<span class="btn btn-default btn-file">Browse <input
+											type="file" id="flAvatar">
+										</span>
+									</div>
+								</div>
+								<div class="form-group" style="margin: auto; width: 500px">
 									<input type="text" class="form-control"
-										placeholder="Enter your first name *" id="txtFirstName" required
+										placeholder="Enter your first name *" id="txtFirstName"
+										required
 										data-validation-required-message="Please enter your first name.">
 									<p class="help-block text-danger"></p>
 								</div>
-                                <div class="form-group" style="margin:auto; width:500px">
+								<div class="form-group" style="margin: auto; width: 500px">
 									<input type="text" class="form-control"
 										placeholder="Enter your last name *" id="txtLastName" required
 										data-validation-required-message="Please enter your last name.">
 									<p class="help-block text-danger"></p>
 								</div>
-                                <div class="form-group" style="margin:auto; width:500px">
+								<div class="form-group" style="margin: auto; width: 500px">
 									<input type="email" class="form-control"
 										placeholder="Enter your Email *" id="txtEmail" required
 										data-validation-required-message="Please enter your email addres.">
 									<p class="help-block text-danger"></p>
 								</div>
-                                <div style="margin:auto; width:500px" class="form-group">
+								<div style="margin: auto; width: 500px" class="form-group">
 									<input type="password" class="form-control"
 										placeholder="Enter your Password *" id="txtPassword" required
 										data-validation-required-message="Please enter your password.">
 									<p class="help-block text-danger"></p>
-                                </div>
-                                 <div style="margin:auto; width:500px" class="form-group">
+								</div>
+								<div style="margin: auto; width: 500px" class="form-group">
 									<input type="password" class="form-control"
-										placeholder="Enter your password again *" id="txtPasswordAgain" required
+										placeholder="Enter your password again *"
+										id="txtPasswordAgain" required
 										data-validation-required-message="Please enter your password.">
 									<p class="help-block text-danger"></p>
-                                </div>
-                                <div class="col-lg-12 text-right" >
-                                    <button type="submit" id="btnSendData" class="btn btn-xl">Registration</button>                                    
-                                </div>
-                            </div>
+								</div>
+								<div class="col-lg-12 text-right">
+									<button type="submit" id="btnSendData" class="btn btn-xl">Registration</button>
+								</div>
+							</div>
 						</div>
+					</div>
+				</div>
+				<div class='errorsMesage row' id='errorRegistration'>error registration</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Book -->
+	<div class="portfolio-modal modal fade" id="addBookBrowsing"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div style="margin-top: 40px; font-size: 40px;">Add Book</div>
+				</div>
+				<div class="row" style="width: 1100px; margin-top: 50px;">
+					<div class="form-group" style="margin: auto; width: 500px">
+						<input type="text" class="form-control"
+							placeholder="Enter title book *" id="title" required
+							data-validation-required-message="Please enter title book.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group" style="margin: auto; width: 500px">
+						<input type="text" class="form-control"
+							placeholder="Enter author book *" id="author" required
+							data-validation-required-message="Please enter author book.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div class="form-group" style="margin: auto; width: 500px">
+						<input type="text" class="form-control"
+							placeholder="Enter publishing house *" id="publishingHouse"
+							required
+							data-validation-required-message="Please enter publishing house.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div style="margin: auto; width: 500px" class="form-group">
+						<input type="text" class="form-control"
+							placeholder="Enter the year of publishing*" id="years" required
+							data-validation-required-message="Please enter the year of publishing.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div style="margin: auto; width: 500px" class="form-group">
+						<input type="text" class="form-control"
+							placeholder="Enter page number*" id="pageNumber" required
+							data-validation-required-message="Please enter page number.">
+						<p class="help-block text-danger"></p>
+					</div>
+					<div style="margin: auto; width: 500px" class="form-group">
+						<select id="statusBook" class="form-control">
+							<option value="1">на руках</option>
+							<option value="2">в читальном зале</option>
+							<option value="2">забронирована</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-lg-12 text-right">
+					<button type="submit" id="btnAddBook" class="btn btn-xl">Add</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Take Books -->
+	<section id="takeBooks" class="librarian" style="height: 1200px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-left">
+					<h3 class="section-heading">Search book</h3>
+				</div>
+			</div>
+			<div class="row">
+				<input style="width: auto; height: 25px; float: left;" type="text"
+					class="form-control text-left" placeholder="Search by title"
+					id="searchTitle" /> <input type="text"
+					class="form-control text-left"
+					style="width: auto; height: 25px; float: left; margin-left: 15px;"
+					placeholder="Search by author" id="searchAuthor" />
+				<button type="submit" id="btnSearchBook"
+					style="margin-left: 15px; color: #fff; background-color: #fed136;"
+					class="btn">Search</button>
+			</div>
+			<div class="row">
+				<div class="listBooksLib"></div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 text-left">
+					<h3 class="section-heading">Search user</h3>
+				</div>
+			</div>
+			<div class="row">
+				<input style="width: auto; height: 25px; float: left;" type="text"
+					class="form-control text-left" placeholder="Search by first name"
+					id="searchFirstName" /> <input type="text"
+					class="form-control text-left"
+					style="width: auto; height: 25px; float: left; margin-left: 15px;"
+					placeholder="Search by last name" id="searchLastName" /> <input
+					type="text" class="form-control text-left"
+					style="width: auto; height: 25px; float: left; margin-left: 15px;"
+					placeholder="Search by email" id="searchEmail" />
+				<button type="submit" id="btnSearchUsers"
+					style="margin-left: 15px; color: #fff; background-color: #fed136;"
+					class="btn">Search</button>
+			</div>
+			<div class="row">
+				<div class="listUsers"></div>
+				<input type="date" style="width: auto; height: 25px; float: left;"
+					class="form-control" id="dateTakeBook" /> <input type="text"
+					style="width: auto; height: 25px; float: left; margin-left: 25px; display: none"
+					class="form-control" id="endDate" />
+			</div>
+			<div class="row message">
+				<h3>The book is issued</h3>
+			</div>
+			<div class="row" style="width: 1100px; margin-top: 50px;">
+				<div class="col-lg-12 text-right">
+					<button type="submit" id="btnTakeBook" class="btn btn-xl">Take</button>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Browsing Users -->
+	<div class="portfolio-modal modal fade" id="user" tabindex="-1"
+		role="dialog" aria-hidden="true">
+		<div class="modal-content">
+			<div class="close-modal" data-dismiss="modal">
+				<div class="lr">
+					<div class="rl"></div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div style="margin-top: 40px;">
+						<img class="imgAvatar photoUsers" />
+					</div>
+					<div class="nameUsers"></div>
+				</div>
+				<div class="row" style="width: 1100px; margin-top: 50px;">
+					<div class="col-lg-12 text-left" style="height: 40px;">
+						<h3 class="section-subheading text-muted">Books on their
+							hands</h3>
+					</div>
+					<div class="col-lg-12 text-center">
+						<div class="booksHead">
+							<div class="">Title</div>
+							<div>Author</div>
+							<div>Publishing House</div>
+							<div>Years</div>
+							<div>Page Number</div>
+						</div>
+						<div class="booksUser"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-    <!-- Add Book -->
-    <div class="portfolio-modal modal fade" id="addBookBrowsing" tabindex="-1"
-        role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div style="margin-top: 40px; font-size:40px;">
-                        Add Book
-                    </div>
-                </div>
-                <div class="row" style="width: 1100px; margin-top: 50px;">
-                    <div class="form-group" style="margin: auto; width: 500px">
-                        <input type="text" class="form-control"
-                            placeholder="Enter title book *" id="title" required
-                            data-validation-required-message="Please enter title book.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="form-group" style="margin: auto; width: 500px">
-                        <input type="text" class="form-control"
-                            placeholder="Enter author book *" id="author" required
-                            data-validation-required-message="Please enter author book.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="form-group" style="margin: auto; width: 500px">
-                        <input type="text" class="form-control"
-                            placeholder="Enter publishing house *" id="publishingHouse" required
-                            data-validation-required-message="Please enter publishing house.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div style="margin: auto; width: 500px" class="form-group">
-                        <input type="text" class="form-control"
-                            placeholder="Enter the year of publishing*" id="years" required
-                            data-validation-required-message="Please enter the year of publishing.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div style="margin: auto; width: 500px" class="form-group">
-                        <input type="text" class="form-control"
-                            placeholder="Enter page number*" id="pageNumber" required
-                            data-validation-required-message="Please enter page number.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div style="margin: auto; width: 500px" class="form-group">
-                        <select id="statusBook" class="form-control">
-                            <option value="1">на руках</option>
-                            <option value="2">в читальном зале</option>
-                            <option value="2">забронирована</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-lg-12 text-right">
-                    <button type="submit" id="btnAddBook" class="btn btn-xl">Add</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Take Books -->
-	<section id="takeBooks" class="librarian" style="height: 1200px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-left">
-                    <h3 class="section-heading">Search book</h3>
-                </div>
-            </div>
-            <div class="row">
-                <input style="width: auto; height: 25px; float: left;" type="text" class="form-control text-left"
-                    placeholder="Search by title" id="searchTitle" />
-                <input type="text" class="form-control text-left" style="width: auto; height: 25px; float: left; margin-left: 15px;"
-                    placeholder="Search by author" id="searchAuthor" />
-                <button type="submit" id="btnSearchBook" style="margin-left: 15px; color: #fff; background-color: #fed136;" class="btn">Search</button>
-            </div>
-            <div class="row">
-                <div class="listBooks"></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-left">
-                    <h3 class="section-heading">Search user</h3>
-                </div>
-            </div>
-            <div class="row">
-                <input style="width: auto; height: 25px; float: left;" type="text" class="form-control text-left"
-                    placeholder="Search by first name" id="searchFirstName" />
-                <input type="text" class="form-control text-left" style="width: auto; height: 25px; float: left; margin-left: 15px;"
-                    placeholder="Search by last name" id="searchLastName" />
-                <input type="text" class="form-control text-left" style="width: auto; height: 25px; float: left; margin-left: 15px;"
-                    placeholder="Search by email" id="searchEmail" />
-                <button type="submit" id="btnSearchUsers" style="margin-left: 15px; color: #fff; background-color: #fed136;" class="btn">Search</button>
-            </div>
-            <div class="row">
-                <div class="listUsers"></div>
-                <input type="date" style="width: auto; height: 25px; float: left;" class="form-control" id="dateTakeBook"/>
-                <input type="text" style="width: auto; height: 25px; float: left; margin-left:25px; display:none" class="form-control" id="endDate"/>
-            </div>
-            <div class="row message">
-                <h3>The book is issued</h3>
-            </div>
-            <div class="row" style="width: 1100px; margin-top: 50px;">
-                <div class="col-lg-12 text-right">
-                    <button type="submit" id="btnTakeBook" class="btn btn-xl">Take</button>
-                </div>
-            </div>
-
-        </div>
-	</section>
-
-    <!-- Browsing Book -->
-    <div class="portfolio-modal modal fade" id="browsingBook" tabindex="-1"
-        role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row col-lg-12 text-left">
-                    <!--<div style="margin-top: 40px;">
-                        <img class="imgAvatar photoUsers" />
-                    </div>-->
-                    <div class="titleBook"></div>
-                </div>
-                <div class="row" style="width: 1100px; margin-top: 50px;">
-                    <div class="col-lg-12 text-left">
-                        <div class="wrap">Content: </div><div class="contentBook"></div>
-                        <div class="wrap">Page number: </div><div class="pageNumberBook"></div>
-                        <div class="wrap">Years: </div><div class="yearsBook"></div>
-                        <div class="wrap">Publishing house: </div><div class="publishingHouseBook"></div>
-                    </div>
-                </div>
-                <div class="row col-lg-12 text-left" style="width: 1100px; margin-top: 50px;">
-                    <input type="date" class="form-group" id="dateReserve"/> 
-                </div>
-                 <div class="row" style="width: 1100px; margin-top: 50px;">
-                     <div class="col-lg-12 text-right">
-                         <button type="submit" id="toReserve" class="btn btn-xl">To Reserve</button>
-                     </div>
-                 </div>
-            </div>
-            </div>
-        </div>
-
-    <!-- Browsing Users -->
-    <div class="portfolio-modal modal fade" id="user" tabindex="-1"
-        role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div style="margin-top: 40px;">
-                        <img class="imgAvatar photoUsers" />
-                    </div>
-                    <div class="nameUsers"></div>
-                </div>
-                <div class="row" style="width: 1100px; margin-top: 50px;">
-                    <div class="col-lg-12 text-left" style="height: 40px;">
-                        <h3 class="section-subheading text-muted">Books on their hands</h3>
-                    </div>
-                    <div class="col-lg-12 text-center">
-                        <div class="booksHead">
-                            <div class="">Title</div>
-                            <div>Author</div>
-                            <div>Publishing House</div>
-                            <div>Years</div>
-                            <div>Page Number</div>
-                        </div>
-                        <div class="booksUser"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MY Books -->
+	<!-- MY Books -->
 	<section id="myBooks" class="user" style="height: 1200px;">
 		<div class="container">
 			<div class="row">
-				<div style="margin-top:40px;">
-					<img class="imgAvatar photoUsers"/>
+				<div style="margin-top: 40px;">
+					<img class="imgAvatar photoUsers" />
 				</div>
-                <div class="nameUsers"></div>
+				<div class="nameUsers"></div>
 			</div>
-			<div class="row" style="width:1100px; margin-top: 50px;">
+			<div class="row" style="width: 1100px; margin-top: 50px;">
 				<div class="col-lg-12 text-left" style="height: 40px;">
-					<h3 class="section-subheading text-muted" >Your Books</h3>
+					<h3 class="section-subheading text-muted">Your Books</h3>
 				</div>
-                <div class="col-lg-12 text-center">
-                    <div class="booksHead">
-                        <div class="">Title</div>
-                        <div>Author</div>
-                        <div>Publishing House</div>
-                        <div>Years</div>
-                        <div>Page Number</div>
-                    </div>
-                    <div class="booksUser"></div>
-                </div>
+				<div class="col-lg-12 text-center">
+					<div class="booksHead">
+						<div class="">Title</div>
+						<div>Author</div>
+						<div>Publishing House</div>
+						<div>Years</div>
+						<div>Page Number</div>
+					</div>
+					<div class="booksUser"></div>
+				</div>
 			</div>
-        </div>
+		</div>
 	</section>
 
-    <!--search Book -->
+	<!--search Book -->
 	<section id="searchBook" class="bg-light-gray" style="height: 980px">
 		<div class="container">
-
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                  <div class="foundBooks"></div>
-                  </div>
-            </div>
-        </div>
+			<div class="row">
+				<div class="col-lg-12 text-left">
+					<h3 class="section-heading">Search book</h3>
+				</div>
+			</div>
+			<div class="row">
+				<input style="width: auto; height: 25px; float: left;" type="text"
+					class="form-control text-left" placeholder="Search by title"
+					id="searchForUserTitle" /> <input type="text"
+					class="form-control text-left"
+					style="width: auto; height: 25px; float: left; margin-left: 15px;"
+					placeholder="Search by author" id="searchForUserAuthor" />
+				<button type="submit" id="btnSearchForUserBook"
+					style="margin-left: 15px; color: #fff; background-color: #fed136;"
+					class="btn">Search</button>
+			</div>
+			<div class="row">
+				<div class="listBooksUser"></div>
+			</div>
+		</div>
 	</section>
 
-    <!--search USER -->
+	<!--search USER -->
 	<section id="searchUser" class="bg-light-gray" style="height: 980px">
 		<div class="container">
 			<div class="row">
@@ -417,27 +392,11 @@
 					<h2 class="section-heading">Search user</h2>
 				</div>
 			</div>
-            <!--<div class="row">
-                <div class="form-group" style="margin: auto; width: 500px">
-                    <input type="text" class="form-control"
-                        placeholder="Search by first name" id="searchFirstName" />
-                </div>
-                <div class="form-group" style="margin: auto; width: 500px">
-                    <input type="text" class="form-control"
-                        placeholder="Search by last name" id="searchLastName" />
-                </div>
-                <div style="margin: auto; width: 500px" class="form-group">
-                    <input type="text" class="form-control"
-                        placeholder="Search by email" id="searchEmail" />
-                </div>
-                <div class="col-lg-12 text-right">
-                <button type="submit" id="btnSearchUsers" class="btn btn-xl">Search</button>
-            </div>-->
-            </div>
-            <div class="row">
-                  <div class="foundUsers"></div>
-            </div>
-        </div>
+		</div>
+		<div class="row">
+			<div class="foundUsers"></div>
+		</div>
+		</div>
 	</section>
 
 	<!--ALL Books -->
@@ -448,24 +407,26 @@
 					<h2 class="section-heading">Books</h2>
 				</div>
 			</div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="booksHead">
-                        <div class="">Title</div>
-                        <div>Author</div>
-                        <div>Publishing House</div>
-                        <div>Years</div>
-                        <div>Page Number</div>
-                        <div>Status</div>
-                    </div>
-                    <div class="allBooks"></div>
-                </div>
-            </div>
-            <a href="#addBookBrowsing" class="portfolio-link"
-                data-toggle="modal">
-                <button type="submit" id="addBook" class="btn btn-xl">Add book</button>
-            </a>
-        </div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="booksHead">
+						<div>Title</div>
+						<div>Author</div>
+						<div>Publishing House</div>
+						<div>Years</div>
+						<div>Page Number</div>
+						<div>Status</div>
+					</div>
+					<div class="allBooks"></div>
+				</div>
+			</div>
+			<a href="#addBookBrowsing" class="librarian portfolio-link" data-toggle="modal">
+				<button type="submit" id="addBook" class="btn btn-xl">Add
+					book</button>
+			</a>
+			<div class="row errorsMesage" id="errorReserve">book reserve error</div>
+			<div class="row errorsMesage" id="errorAdd">book add error</div>
+		</div>
 	</section>
 
 	<!--ALL USERS -->
@@ -476,24 +437,23 @@
 					<h2 class="section-heading">USERS</h2>
 				</div>
 			</div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="usersHead">
-                        <div>First Name</div>
-                        <div>Last Name</div>
-                        <div>Email</div>
-                    </div>
-                    <div class="allUsers"></div>
-                </div>
-            </div>
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<div class="usersHead">
+						<div>First Name</div>
+						<div>Last Name</div>
+						<div>Email</div>
+					</div>
+					<div class="allUsers"></div>
+				</div>
+			</div>
 		</div>
 	</section>
 	<footer>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<span class="copyright">Nikolai Iakovlev &copy; Library
-						2015</span>
+					<span class="copyright">Nikolai Iakovlev &copy; Library 2015</span>
 				</div>
 				<div class="col-md-4">
 					<ul class="list-inline social-buttons">
@@ -512,607 +472,25 @@
 		</div>
 	</footer>
 
-	<script type="text/javascript">
-	    var user;
-	    $(document).ready(function () {
-	        if ($.cookie("userInfo") == "NaN")
-	            $.cookie("userInfo", "null")
-	        if ($.cookie("userInfo") == "null" || $.cookie("userInfo") == null) {
-	            $('.nav li').hide()
-	            $('#registr').show();
-	            $('#login').show();
-	            window.location.href = "#login";
-	        }
-	        else if ($.cookie("userInfo") != "null") {
-	            if ($.cookie("role") == "librarian") {
-	                $(".user").hide();
-	            }
-	            else if ($.cookie("role") == "user") {
-	                $(".librarian").hide();
-	            }
+	<!-- Custom Theme JavaScript -->
+	<script src="js/agency.js"></script>
 
-	            $('#registr').hide();
-	            $('#login').hide();
-	        } 
-	        if($.cookie("role") && $.cookie("role") == 'librarian')
-	        {
-	            if ($.cookie("userInfoid")) {
-	                getAllUsers();
-	                getAllBooks();
-	                getUser($.cookie("userInfoid"));
-	            }
-	        } else if ($.cookie("role") && $.cookie("role") == 'user') {
-	            if ($.cookie("userInfoid")) {
-	                getAllBooks();
-	                getbooksUser($.cookie("userInfoid"));
-	                getUser($.cookie("userInfoid"));
-	            }
-	        }
-	    });
-	    function listBooks() {
-	        var url = "http://localhost:8080/books/all";
-	        var request = $.get(url);
-	        request.done(function (dataBooks) {
-	            if (dataBooks.length > 0) {
-	                $('.listBooks').append('<select size="5"  class="listBooksItem">');
-	                $.each(dataBooks, function view(i) {
-	                    $('.listBooksItem').append('<option value=' + dataBooks[i].id + '>' + dataBooks[i].title + '</option>');
-	                })
-	                $('.listBooks').append('</select>');
-	            }
-	            else {
-	                $('.listBooks').empty();
-	            }
-	        });
-	    }
-	    function listUsers() {
-	        var url = "http://localhost:8080/users/all";
-	        var request = $.get(url);
-	        request.done(function (dataUsers) {
-	            if (dataUsers.length > 0) {
-	                $('.listUsers').append('<select size="5"  class="listUsersItem">');
-	                $.each(dataUsers, function view(i) {
-	                    $('.listUsersItem').append('<option value=' + dataUsers[i].id + '>' + dataUsers[i].firstName + ' ' + dataUsers[i].lastName + '</option>');
-	                })
-	                $('.listUsers').append('</select>');
-	            }
-	            else {
-	                $('.listUsers').empty();
-	            }
-	        });
-	    }
-	    function getUser(id) { 
-	        var url = "http://localhost:8080/users/user/" + id + "/";
-	        var request = $.get(url);
-	        request.done(function (data) {
-	                $(".photoUsers").attr("src", data.avatar);
-	                $(".nameUsers").text(data.firstName + "  " + data.lastName);
-	        });
-	    }
-	    function getAllUsers() {
-	        var url = "http://localhost:8080/users/all";
-	        var request = $.get(url);
-	        request.done(function (dataUsers) {
-	            if (dataUsers.length > 0) {
-	                $.each(dataUsers, function view(i) {
-	                    $('.allUsers').append('<div class="users userItemAll' + i + '"></div>');
-	                    $('.userItemAll' + i).append('<div class="firstName User">' + dataUsers[i].firstName + '</div>');
-	                    $('.userItemAll' + i).append('<div class="lastName User">' + dataUsers[i].lastName + '</div>');
-	                    $('.userItemAll' + i).append('<div class="Email User">' + dataUsers[i].email + '</div>');
-	                    $('.userItemAll' + i).append('<a href="#user" id="userHref' + i + '" class="portfolio-link" data-toggle="modal"><button type="submit" style="font-size: 12px; padding: 10px 20px;" id="btnUser" class="btn btn-xl">browsing</button></a>');
-	                    $('#userHref' + i + '').bind('click', function () {
-	                        getUser(dataUsers[i].id);
-	                        getbooksUser(dataUsers[i].id);
-	                    })
-	                });
-	            }
-	            else {
-	                $('.allUsers').empty();
-	            }
-	        });
-	    }
-	    function getBook(id) {
-	        var url = "http://localhost:8080/books/book/" + id + "/";
-	        var request = $.get(url);
-	        request.done(function (dataBooks) {
-	            if (dataBooks) {
-	                $(".titleBook").text(dataBooks.title);
-	                $(".publishingHouseBook").text(dataBooks.publishingHouse);
-	                $(".pageNumberBook").text(dataBooks.pageNumber);
-	                $(".yearsBook").text(dataBooks.years);
-	            }
-	            else {
-	                $(".titleBook").empty();
-	                $(".publishingHouseBook").empty();
-	                $(".pageNumberBook").empty();
-	                $(".yearsBook").empty();
-	            }
-	        });
-	    }
-	    function getAllBooks() {
-	        var url = "http://localhost:8080/books/all";
-	        var request = $.get(url);
-	        request.done(function (dataBooks) {
-	            if (dataBooks.length > 0) {
-	                $.each(dataBooks, function view(i) {
-	                    $('.allBooks').append('<div class="books bookItemAll' + i + '"></div>');
-	                    $('.bookItemAll' + i).append('<div class="title Book">' + dataBooks[i].title + '</div>');
-	                    $('.bookItemAll' + i).append('<div class="author Book">' + dataBooks[i].author + '</div>');
-	                    $('.bookItemAll' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
-	                    $('.bookItemAll' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
-	                    $('.bookItemAll' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>');
-	                    var url = "http://localhost:8080/book/status/" + dataBooks[i].id + "/";
-	                    var request = $.get(url);
-	                    request.done(function (dataBookInUse) {
-	                        debugger;
-	                        if (dataBookInUse) {
-	                            switch (dataBookInUse.bookStatus) {
-	                                case 1:
-	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> на руках</span></div>');
-	                                    break;
-	                                case 2:
-	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> в читальном зале</span></div>');
-	                                    break;
-	                                case 3:
-	                                    $('.bookItemAll' + i).append('<div class="nameStatus Book"><span> забронирована</span></div>');
-	                                    break;
-	                                default:
-	                                    break;
-	                            }
-	                        }
-	                        else {
-	                            $('.bookItemAll' + i).append('<div class="nameStatus Book"><span>в ниличии</span></div>');
-	                        }
-	                    }
-	                    )
-	                    $('.bookItemAll' + i).append('<a href="#browsingBook" id="bookHref' + i + '" class="portfolio-link" data-toggle="modal"><button type="submit" style="font-size: 12px; padding: 10px 20px;" class="btn btn-xl">browsing</button></a>');
-	                    $('#bookHref' + i + '').bind('click', function () {
-	                        getBook(dataBooks[i].id);
-	                    })
-	                    $('#toReserve').bind('click',function(){
-	                        var url = "http://localhost:8080/user/takeBook";
-	                        var id_user = $.cookie("userInfoid");
-	                        var id_book = dataBooks[i].id;
-	                        var status = "3";
-	                        var DateTake = new Date($('#dateReserve').val());
-	                        var month = Number(DateTake.getMonth()) + 1;
-	                        var years = Number(DateTake.getFullYear());
-	                        if (month > 12) {
-	                            month = 1;
-	                            years = years + 1;
-	                        }
-	                        var endDate = '' + years + '-' + month + '-' + DateTake.getDate() + '';
-	                        var startDate = '' + DateTake.getFullYear() + '-' + DateTake.getMonth() + '-' + DateTake.getDate() + '';
-	                        var JSONObject = {
-	                            "id": 1,
-	                            "id_book": id_book,
-	                            "id_user": id_user,
-	                            "bookStatus": status,
-	                            "startDate": startDate,
-	                            "endDate": endDate
-	                        };
-	                        var request = takeBook(JSONObject);
-	                        request.done(function () {
-	                            location.reload();
-	                        })
-                        })
-	                });
-	            }
-	            else {
-	                $('.allBooks').empty();
-	            }
-	        });
-	    }
-	    function userLogin(e, emailUss, passwordUss) {
-	        e.preventDefault();
-	        var JSONObject = {
-	            "password": passwordUss,
-	            "email": emailUss,
-	        }
-	        var request = $.ajax({
-	            contentType: 'application/json',
-	            url: "http://localhost:8080/user/login/",
-	            type: "POST",
-	            data: JSON.stringify(JSONObject),
-	            dataType: "json"
-	        });
-	        request.done(function (data) {
-	            user = data;
-	            $.cookie("userInfo", user.email + user.password, { expires: 7 });
-	            $.cookie("userInfoid", user.id, { expires: 7 });
-	            $.cookie("role", user.role, { expires: 7 });
-	            if ($.cookie("userInfo") != null) {
-	                $('#regist').hide();
-	                $('#login').hide();
-	                $('#exit').show();
-	                $('.nav li').show()
-	            }
-	            if (user != null) {
-	                getbooksUser(data.id);
-	                if ($.cookie("role") == "librarian") {
-	                    $(".user").hide();
-	                }
-	                if ($.cookie("role") == "user") {
-	                    $(".librarian").hide();
-	                }
-	            }
-	            location.reload();
-	        });
-	    }
-	    function getbooksUser(id) {
-	        var url = "http://localhost:8080/books/user/" + id + "/"
-	        var posting = $.post(url, "json");
-	        var idUser = id;
-	        posting.done(function getBooksUser(dataBooks) {
-	            if (dataBooks.length > 0) {
-	                $.each(dataBooks, function view(i) {
-	                    $('.booksUser').append('<div class="books bookItem' + i + '"></div>');
-	                    $('.bookItem' + i).append('<div class="title Book">' + dataBooks[i].title + '</div>');
-	                    $('.bookItem' + i).append('<div class="author Book">' + dataBooks[i].author + '</div>');
-	                    $('.bookItem' + i).append('<div class="publishingHouse Book">' + dataBooks[i].publishingHouse + '</div>');
-	                    $('.bookItem' + i).append('<div class="years Book">' + dataBooks[i].years + '</div>');
-	                    $('.bookItem' + i).append('<div class="pageNumber Book">' + dataBooks[i].pageNumber + '</div>')
-	                    $('.bookItem' + i).append('<div class=""><button type="bottom" style="font-size: 12px; padding: 10px 20px;" id="btnPassBook' + i + '" class="btn btn-xl">Pass</button>');
-	                    $('#btnPassBook' + i + '').bind('click', function () {
-	                        debugger;
-	                        var JSONObject = {
-	                            "id_user": idUser,
-	                            "id_book": dataBooks[i].id
-	                        };
-	                        var request = $.ajax({
-	                            contentType: 'application/json',
-	                            url: "http://localhost:8080/user/passBook",
-	                            type: "DELETE",
-	                            data: JSON.stringify(JSONObject),
-	                            dataType: "json"
-	                        });
-	                        request.done($('.bookItem' + i).empty());
-	                    })
-	                });
-	            }
-	            else {
-	                $('.booksUser').empty();
-	            }
-	        });
-	    }
-	    $('#dateTakeBook').focusout(function () {
-	        debugger;
-	        var DateTake = new Date($('#dateTakeBook').val());
-	        var month = Number(DateTake.getMonth()) + 2;
-	        var years = Number(DateTake.getFullYear());
-	        if (month > 12) {
-	            month = 1;
-	            years = years + 1;
-	        }
-	        var endDate = '' + DateTake.getDate() + '.' + month + '.' + years + '';
-	        $('#endDate').show();
-	        $('#endDate').val(endDate);
-	    });
-	    $('#btnTakeBook').click(function () {
-	        debugger;
-	        var id_user = $('.listUsersItem option:selected').val();
-	        var id_book = $('.listBooksItem option:selected').val();
-	        var status = "1";
-	        var DateTake = new Date($('#dateTakeBook').val());
-	        var month = Number(DateTake.getMonth()) + 1;
-	        var years = Number(DateTake.getFullYear());
-	        if (month > 12) {
-	            month = 1;
-	            years = years + 1;
-	        }
-	        var endDate = '' + years + '-' + month + '-' + DateTake.getDate() + '';
-	        var startDate =''+ DateTake.getFullYear() + '-' + DateTake.getMonth() + '-' + DateTake.getDate()+'';
-	        var JSONObject = {
-                "id":1,
-	            "id_book": id_book,
-	            "id_user": id_user,
-	            "bookStatus": status,
-                "startDate":startDate,
-                "endDate":endDate
-	        };
-	        var request = takeBook(JSONObject);
-	            request.done(function () {
-	                location.reload();
-	            })
-	    });
-	    function takeBook(JSONObject) {
-	        $.ajax({
-	            contentType: 'application/json',
-	            url: "http://localhost:8080/user/takeBook",
-	            type: "POST",
-	            data: JSON.stringify(JSONObject),
-	            dataType: "json"
-	        });
-	    }
+	<!-- jQuery -->
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
 
-	    $('#btnSearchBook').click(function () {
-	        debugger;
-	        var searchTitle = $("#searchTitle").val();
-	        var searchAuthor = $("#searchAuthor").val();
-	        var JSONObjectUser = {
-	            "title": searchTitle,
-	            "author": searchAuthor,
-	        };
-	        var request = $.ajax({
-	            contentType: 'application/json',
-	            url: "http://localhost:8080/books/book/search",
-	            type: "POST",
-	            data: JSON.stringify(JSONObjectUser),
-	            dataType: "json"
-	        });
-	        request.done(function (dataBooks) {
-	            debugger;
-	            if (dataBooks.length > 0) {
-	                $('.listBooks').empty();
-	                $('.listBooks').append('<select size="5"  class="form-control listBooksItem">');
-	                $('.listBooksItem').empty();
-	                $.each(dataBooks, function view(i) {
-	                    var url = "http://localhost:8080/book/status/" + dataBooks[i].id + "/";
-	                    var request = $.get(url);
-	                    request.done(function (dataBookInUse) {
-	                        debugger;
-	                        if (dataBookInUse) {
-	                            switch (dataBookInUse.bookStatus) {
-	                                case 1:
-	                                    $('.listBooksItem').append('<option value=' + dataBooks[i].id + '>' + dataBooks[i].title + '  ' + dataBooks[i].author + '<span> на руках</span></option>');
-	                                    break;
-	                                case 2:
-	                                    $('.listBooksItem').append('<option value=' + dataBooks[i].id + '>' + dataBooks[i].title + '  ' + dataBooks[i].author + '<span> в читальном зале</span></option>');
-	                                    break;
-	                                case 3:
-	                                    $('.listBooksItem').append('<option value=' + dataBooks[i].id + '>' + dataBooks[i].title + '  ' + dataBooks[i].author + '<span> забронирована</span></option>');
-	                                    break;
-	                                default:
-	                                    break;
-	                            }
-	                        }
-	                        else{
-	                            $('.listBooksItem').append('<option value=' + dataBooks[i].id + '>' + dataBooks[i].title + '  ' + dataBooks[i].author + '<span>в ниличии</span></option>');	                                
-	                        }
-	                        }
-	                    )
-	                })
-	                $('.listBooks').append('</select>');
-	            }
-	            else {
-	                $('.listBooks').empty();
-	            }
-	        })
-	    })
-	    $('#btnSearchUsers').click(function () {
-	        var searchEmail = $("#searchEmail").val();
-	        var searchFirstName = $("#searchFirstName").val();
-	        var searchLastName = $("#searchLastName").val();
+	<!-- Plugin JavaScript -->
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="js/classie.js"></script>
 
-	        var JSONObjectUser = {
-	            "firstName": searchFirstName,
-	            "lastName": searchLastName,
-	            "email": searchEmail
-	        };
-	        var request = $.ajax({
-	            contentType: 'application/json',
-	            url: "http://localhost:8080/users/user/search",
-	            type: "POST",
-	            data: JSON.stringify(JSONObjectUser),
-	            dataType: "json"
-	        });
-	        request.done(function (dataUsers) {
-	            if (dataUsers.length > 0) {
-	                $('.listUsers').append('<select size="5"  class="form-control listUsersItem">');
-	                $.each(dataUsers, function view(i) {
-	                    $('.listUsersItem').append('<option value=' + dataUsers[i].id + '>' + dataUsers[i].firstName + '  ' + dataUsers[i].lastName + '  ' + dataUsers[i].email + '</option>');
-	                })
-	                $('.listUsers').append('</select>');
-	            }
-	            else {
-	                $('.listUsers').empty();
-	            }
-	        })
-	    })
-	    $('#btnAddBook').click(function () {
-	        var titleBook = $("#title").val();
-	        var author = $("#author").val();
-	        var publishingHouse = $("#publishingHouse").val();
-	        var years = $("#years").val();
-	        var pageNumber = $("#pageNumber").val();
-	        var JSONObjectUser = {
-	            "id": 1,
-	            "title": titleBook,
-	            "author": author,
-	            "publishingHouse": publishingHouse,
-	            "years": years,
-	            "pageNumber": pageNumber
-	        };
-	        var request = $.ajax({
-	            contentType: 'application/json',
-	            url: "http://localhost:8080/books/add",
-	            type: "POST",
-	            data: JSON.stringify(JSONObjectUser),
-	            dataType: "json"
-	        });
-	        request.done(location.reload());
-	    })
-	    $('#btnSendData').click(function (e) {
-	        var emaiReg = $("#txtEmail").val();
-	        var passwordReg = $("#txtPassword").val();
-	        var firstNameReg = $("#txtFirstName").val();
-	        var lastNameReg = $("#txtLastName").val();
-	        var passwordAgain = $("#txtPasswordAgain").val();
-	        var imgAvatarReg = $('#imgLoad').attr('src');
-	        var role = "user";
+	<!-- Contact Form JavaScript -->
+	<script src="js/jqBootstrapValidation.js"></script>
 
-	        if (passwordReg != passwordAgain) {
-	            return;
-	        }
-	        var JSONObjectUser = {
-	            "id": 1,
-	            "firstName": firstNameReg,
-	            "lastName": lastNameReg,
-	            "password": passwordReg,
-	            "avatar": imgAvatarReg,
-	            "email": emaiReg,
-	            "role": role};
-	        var request = $.ajax({
-	        	  contentType: 'application/json',
-	        	  url: "http://localhost:8080/user/add",
-	        	  type: "POST",
-	        	  data: JSON.stringify(JSONObjectUser),
-	        	  dataType: "json"
-	        });
-	        request.done(userLogin(e, emaiReg, passwordReg))
-	    });
-	    function readURL(e) {
-	        e.preventDefault();
-	        if (this.files && this.files[0]) {
-	            var reader = new FileReader();
-	            $(reader).load(function (e) {
-	                $('#imgLoad').attr('src', e.target.result);
-	                $('#imgLoad').css("display", "inline");
-	            });
-	            reader.readAsDataURL(this.files[0]);
-	        }
-	    }
-	    $("#flAvatar").change(readURL);
-		
-		$("#exit").click(function() {
-		    $.cookie("userInfo", "null");
-		    $.cookie("userInfoid", "null");
-		    $.cookie("role", "null");
-			location.reload();
-		});
-		
-		$("#sendBtn").click(
-            function (e) {
-                var emailUs = $("#email").val();
-                var passwordUs = $("#password").val();
-                userLogin(e, emailUs, passwordUs);
-            });
-
-    </script>
-<style>
-    .message {
-        display:none;
-    }
-    .listBooksItem {
-        width:420px;
-    }
-    .listUsersItem {
-        width:420px;
-    }
-    .contentBook {
-        margin-bottom:25px;
-    }
-    .titleBook {
-        font-size: 25px;
-        color: #fed136;
-    }
-    .wrap {
-        float:left;
-    }
-    .booksHead div {
-        width: 155px;
-        float: left;
-        margin-left: 15px;
-        text-align: left;
-        border-bottom:#fed136 solid 1px;
-    }
-    .booksHead {
-        margin-top:15px;
-        font-size:15px;
-    }
-    .booksUser {
-        padding-top:30px;
-    }
-    .allBooks {
-        padding-top:30px;
-    }
-    .books {
-        width:100%;
-        float:left;
-    }
-    .Book {
-        float: left;
-        margin-left: 15px;
-        text-align: left;
-        width: 155px;
-    }
-
-
-    .usersHead div {
-        width: 155px;
-        float: left;
-        margin-left: 15px;
-        text-align: left;
-        border-bottom:#fed136 solid 1px;
-    }
-    .usersHead {
-        margin-top:15px;
-        font-size:15px;
-    }
-    .usersUser {
-        padding-top:30px;
-    }
-    .allUsers {
-        padding-top:30px;
-    }
-    .users {
-        width:100%;
-        float:left;
-    }
-    .User {
-        float: left;
-        margin-left: 15px;
-        text-align: left;
-        width: 155px;
-    }
-
-    .pageNumber {
-        width: 155px;
-        margin-left: 15px;
-        float: left;
-    }
-    .nameUsers {
-        margin-top: 5px;
-        font-size: 15px;
-        color: #777;
-    }
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            background: white;
-            cursor: inherit;
-            display: block;
-        }
-    .imgAvatar {
-        max-height:150px;
-    }
-    html, body {
-        overflow-y: hidden;
-    }
-
-    li {
-        list-style-type: none;
-    }
-    .navbar-default .nav li a {
-        color:#777;
-    }
-    #login {
-        background-color: #F0F0F0;
-    }
-</style>
-
+	<!-- My JavaScript -->
+	<script src="js/myLibraryJs.js"></script>
 </body>
 
 </html>
