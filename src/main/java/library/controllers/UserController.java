@@ -1,8 +1,16 @@
 package library.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,10 +50,21 @@ public class UserController {
 
 		return search.usersSearch(user);
 	}
-
+	
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public @ResponseBody String addUser(@RequestBody User user) {
+	public @ResponseBody String addUser(@RequestBody User user) throws IOException {
+		
+		String imageDataBytes = user.getAvatar().substring(user.getAvatar().indexOf(",")+1);
 
+		InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes()));
+		
+		BufferedImage image = ImageIO.read(stream);
+		stream.close();
+
+		File outputfile = new File("src/main/resources/image/" + user.getEmail()+ ".png");
+		ImageIO.write(image, "png", outputfile);
+		user.setAvatar("image/" + user.getEmail()+ ".png"); 
+		
 		return regestrarion.addUser(user);
 	}
 

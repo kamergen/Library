@@ -1,5 +1,5 @@
 var user;
-var imgAvatar;
+var file;
 var role = $.cookie("role");
 $(document).ready(function() {
 	if (role && role == 'ROLE_ADMIN') {
@@ -97,7 +97,7 @@ function getUser(id) {
 		    },
 		});
 	request.done(function(data) {
-		$(".photoUsers").attr("src", data.avatar);
+		$(".photoUsers").attr("src", "localhost:8080/file:///D:/My%20Projects/Library/src/main/resources/image/andreev@gmail.com.png");
 		$(".nameUsers").text(data.firstName + "  " + data.lastName);
 	});
 }
@@ -255,7 +255,7 @@ function userLogin(e, emailUss, passwordUss) {
 		data : JSON.stringify(JSONObject),
 		dataType : "json"
 	});
-	request.done(function(data) {
+	request.success(function(data) {
 		user = data;
 		$.cookie("userInfo", user.email +":"+ user.password, {
 			expires : 7
@@ -560,15 +560,13 @@ $('#btnAddBook').click(function() {
 	request.done(location.reload());
 })
 $('#btnSendData').click(function(e) {
-	var emaiReg = $("#txtEmail").val();
+	var emailReg = $("#txtEmail").val();
 	var passwordReg = $("#txtPassword").val();
 	var firstNameReg = $("#txtFirstName").val();
 	var lastNameReg = $("#txtLastName").val();
 	var passwordAgain = $("#txtPasswordAgain").val();
 	debugger;
-	var imgAvatarReg = imgAvatar;
 	var role = "ROLE_USER";
-
 	if (passwordReg != passwordAgain) {
 		return;
 		$('#errorRegistration').show();
@@ -578,8 +576,8 @@ $('#btnSendData').click(function(e) {
 		"firstName" : firstNameReg,
 		"lastName" : lastNameReg,
 		"password" : passwordReg,
-		"avatar" : imgAvatarReg,
-		"email" : emaiReg,
+		"avatar" : file,
+		"email" : emailReg,
 		"role" : role
 	};
 	var request = $.ajax({
@@ -589,44 +587,19 @@ $('#btnSendData').click(function(e) {
 		data : JSON.stringify(JSONObjectUser),
 		dataType : "json"
 	});
-	request.done(userLogin(e, emaiReg, passwordReg))
+	request.success(userLogin(e, emailReg, passwordReg))
 	request.fail(function(){
 		$('#errorRegistration').show();
 	});
 });
-function noop(event) {
-    event.stopPropagation();
-    event.preventDefault();
-}
-
-function dropUpload(event) {
-    noop(event);
-    var files = event.dataTransfer.files;
-
-    for (var i = 0; i < files.length; i++) {
-        upload(files[i]);
-    }
-}
-
-function upload(file) {
-    var formData = new FormData();
-    formData.append("file", file);
-
-    var xhr = new XMLHttpRequest();
-    xhr.upload.addEventListener("progress", uploadProgress, false);
-    xhr.addEventListener("load", uploadComplete, false);
-    xhr.open("POST", "uploadServlet", true); // If async=false, then you'll miss progress bar support.
-    xhr.send(formData);
-}
-
 function readURL(e) {
 	e.preventDefault();
 	if (this.files && this.files[0]) {
 		var reader = new FileReader();
-		
 		$(reader).load(function(e) {
 			$('#imgLoad').attr('src', e.target.result);
 			$('#imgLoad').css("display", "inline");
+			file = e.target.result;
 		});
 		reader.readAsDataURL(this.files[0]);
 	}

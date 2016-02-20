@@ -27,8 +27,8 @@ public class BookDaoTest {
 	@Test
 	public void test() {
 		
-		Book newBook = new Book(ID, TITLE, AUTHOR, PUBLISHING_HOUSE, YEAR, PAGE_NUMBER);
-		Assert.assertNotNull(newBook);
+	//	Book newBook = new Book(ID, TITLE, AUTHOR, PUBLISHING_HOUSE, YEAR, PAGE_NUMBER);
+		//Assert.assertNotNull(newBook);
 		//String message = bookDao.addBook(newBook);
 //		//TODO do it in const
 		//Assert.assertEquals(message, "success: book added");

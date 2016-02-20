@@ -1,5 +1,7 @@
 package library.services;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -20,11 +22,15 @@ public class UploadServlet extends HttpServlet {
         Part file = request.getPart("file");
         String filename = getFilename(file);
         InputStream filecontent = file.getInputStream();
-        // ... Do your file saving job here.
 
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write("File " + filename + " successfully uploaded");
+        byte[] buffer = new byte[(int) file.getSize()];
+        filecontent.read(buffer); 
+        File f = new File("C:\\temp\\" + filename + ".jpeg");   
+        f.createNewFile();  
+        FileOutputStream fos = new FileOutputStream(f);  
+        fos.write(buffer);  //This is where I write it to the C Drive
+        fos.close();
+        filecontent.close(); 
     }
 
     private static String getFilename(Part part) {
