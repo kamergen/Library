@@ -61,9 +61,9 @@ public class UserController {
 		BufferedImage image = ImageIO.read(stream);
 		stream.close();
 
-		File outputfile = new File("src/main/resources/image/" + user.getEmail()+ ".png");
+		File outputfile = new File("src/main/webapp/img/" + user.getEmail()+ ".png");
 		ImageIO.write(image, "png", outputfile);
-		user.setAvatar("image/" + user.getEmail()+ ".png"); 
+		user.setAvatar("img/" + user.getEmail()+ ".png"); 
 		
 		return regestrarion.addUser(user);
 	}
