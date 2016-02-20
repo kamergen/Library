@@ -97,7 +97,7 @@ function getUser(id) {
 		    },
 		});
 	request.done(function(data) {
-		$(".photoUsers").attr("src", "localhost:8080/file:///D:/My%20Projects/Library/src/main/resources/image/andreev@gmail.com.png");
+		$(".photoUsers").attr("src", data.avatar);
 		$(".nameUsers").text(data.firstName + "  " + data.lastName);
 	});
 }
@@ -223,7 +223,6 @@ function getAllBooks() {
 														    var startDate = ''+ DateTake.getFullYear()+ '-'+ DateTake.getMonth()+ '-'+ DateTake.getDate()
 				                                                    + '';
 														    var JSONObject = {
-														        "id": 1,
 														        "id_book": id_book,
 														        "id_user": id_user,
 														        "bookStatus": status,
@@ -369,7 +368,6 @@ $('#btnTakeBook').click(
 			var startDate = '' + DateTake.getFullYear() + '-'
 					+ DateTake.getMonth() + '-' + DateTake.getDate() + '';
 			var JSONObject = {
-				"id" : 1,
 				"id_book" : id_book,
 				"id_user" : id_user,
 				"bookStatus" : status,
@@ -540,7 +538,6 @@ $('#btnAddBook').click(function() {
 	var years = $("#years").val();
 	var pageNumber = $("#pageNumber").val();
 	var JSONObjectUser = {
-		"id" : 1,
 		"title" : titleBook,
 		"author" : author,
 		"publishingHouse" : publishingHouse,
@@ -572,7 +569,6 @@ $('#btnSendData').click(function(e) {
 		$('#errorRegistration').show();
 	}
 	var JSONObjectUser = {
-		"id" : 1,
 		"firstName" : firstNameReg,
 		"lastName" : lastNameReg,
 		"password" : passwordReg,
