@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import library.entities.Book;
 import library.entities.BookInUse;
-import library.entities.User;
 import library.services.BookService;
 import library.services.SearchService;
 

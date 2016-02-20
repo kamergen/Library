@@ -3,27 +3,22 @@ package library.daos;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Repository;
 
-import library.DataConfig;
 import library.entities.Book;
 import library.entities.BookInUse;
-import library.entities.User;
-import library.mapper.BookMapper;
 import library.services.DBComponentForBook;
 
 @Repository
 public class BookDao {
-
+	
 	@Autowired
 	private DBComponentForBook component;
 
 	public Book getBook(Integer id) {
 
 		try {
-			Book book = component.dbComponent().getBook(id);
+			final Book book = component.dbComponent().getBook(id);
 			component.dbComponent();
 			return book;
 

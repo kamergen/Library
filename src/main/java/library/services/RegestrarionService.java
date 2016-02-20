@@ -11,9 +11,9 @@ public class RegestrarionService {
 
 	@Autowired
 	private UserDao userDao;
-
 	
 	public String addUser(User user) {
+		
 		return userDao.addUser(user);
 	}
 

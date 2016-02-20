@@ -15,6 +15,9 @@
  */
 package library;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,54 +26,46 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-/**
- * This application is secured at both the URL level for some parts, and the method level for other parts. The URL
- * security is shown inside this code, while method-level annotations are enabled at by
- * {@link EnableGlobalMethodSecurity}.
- *
- * @author Greg Turnquist
- * @author Oliver Gierke
- */
+import library.services.DBComponentForUser;
+
+
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-	/**
-	 * This section defines the user accounts which can be used for authentication as well as the roles each user has.
-	 * 
-	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)
-	 */
-	@Override
+	@Autowired
+	DataSource dataSource;
+	@Autowired
+	DBComponentForUser componentForUser;
+	
+	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.inMemoryAuthentication().//
-				withUser("greg").password("turnquist").roles("USER").and().//
-				withUser("ollie").password("gierke").roles("USER", "ADMIN");
+		auth.jdbcAuthentication().dataSource(dataSource)
+		.usersByUsernameQuery(
+			"SELECT email as username,password,'true' as enabled FROM users WHERE email = ?")
+		.authoritiesByUsernameQuery(
+			"select email as username, role as authority from users where email=?");
 	}
 
-	/**
-	 * This section defines the security policy for the app.
-	 * <p>
-	 * <ul>
-	 * <li>BASIC authentication is supported (enough for this REST-based demo).</li>
-	 * <li>/employees is secured using URL security shown below.</li>
-	 * <li>CSRF headers are disabled since we are only testing the REST interface, not a web one.</li>
-	 * </ul>
-	 * NOTE: GET is not shown which defaults to permitted.
-	 *
-	 * @param http
-	 * @throws Exception
-	 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
-	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.httpBasic().and().authorizeRequests().//
-				antMatchers(HttpMethod.POST, "/greeting").hasRole("ADMIN").//
-				antMatchers(HttpMethod.PUT, "/greeting/**").hasRole("ADMIN").//
-				antMatchers(HttpMethod.PATCH, "/greeting/**").hasRole("ADMIN").and().//
-				csrf().disable();
-	}	
-	
+		http.httpBasic().and().authorizeRequests()
+		.antMatchers(HttpMethod.DELETE, "/user/delete").hasRole("ADMIN")
+		.antMatchers(HttpMethod.DELETE, "/user/passBook").hasRole("ADMIN")
+		.antMatchers(HttpMethod.DELETE, "/books/delete").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/users/all").hasRole("ADMIN")
+		.antMatchers(HttpMethod.GET, "/users/user/**").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.GET, "/books/user/**").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.GET, "/books/book/**").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.POST, "/books/book/search").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.GET, "/book/status/*").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.GET, "/books/all").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.POST, "/users/user/search").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/user/takeBook").hasAnyRole("USER","ADMIN")
+		.antMatchers(HttpMethod.POST, "/books/add").hasRole("ADMIN")
+		.antMatchers(HttpMethod.POST, "/books/update").hasRole("ADMIN").and()
+		.csrf().disable();
+	}
 }

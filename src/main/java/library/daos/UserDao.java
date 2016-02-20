@@ -46,9 +46,19 @@ public class UserDao {
 	}
 
 	public String takeBook(BookInUse bookInUse) {
-
+		int bookId=0;
 		try {
-			component.dbComponent().takeBook(bookInUse);
+			bookId = component.dbComponent().getReserveBook(bookInUse.getId_book());
+		} catch (Exception e) {
+		}
+		
+		try {
+		
+			if (bookId != 0) {
+				component.dbComponent().updateBookInUse(bookId);
+			} else {
+				component.dbComponent().takeBook(bookInUse);
+			}
 			return "success: book taken";
 		} catch (Exception e) {
 			return "error: the book is not taken";
