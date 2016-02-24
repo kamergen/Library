@@ -14,6 +14,7 @@ public class DBComponentForUser {
 		ctx.register(DataConfig.class);
 		ctx.refresh();
 		UserMapper mapper = ctx.getBean(UserMapper.class);
+		ctx.close();
 		return mapper;
 	}
 }

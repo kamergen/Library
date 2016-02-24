@@ -11,14 +11,18 @@ public class BookInUse {
 	Date startDate;
 	Date endDate;
 
-	public BookInUse(int id, int id_user, int id_book, int bookStatus, Date startDate, Date endDate) {
+	public BookInUse(int id_user, int id_book, int bookStatus, Date startDate, Date endDate) {
 
-		this.id = id;
 		this.id_user = id_user;
 		this.id_book = id_book;
 		this.bookStatus = bookStatus;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+	
+	public BookInUse(int id_user, int id_book) {
+		this.id_user = id_user;
+		this.id_book = id_book;
 	}
 
 	public BookInUse() {

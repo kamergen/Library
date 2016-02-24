@@ -8,13 +8,13 @@ public class Book {
 	private int years;
 	private int pageNumber;
 	private String author;
-
-	public Book() {
-
+	
+	public Book(String title, String author) {
+		this.title = title;
+		this.author = author;
 	}
 
-	public Book(int id, String title, String author, String publishingHouse, int years, int pageNumber) {
-		this.id = id;
+	public Book(String title, String author, String publishingHouse, int years, int pageNumber) {
 		this.title = title;
 		this.author = author;
 		this.publishingHouse = publishingHouse;
@@ -70,4 +70,7 @@ public class Book {
 		this.pageNumber = pageNumber;
 	}
 
+	public Book() {
+
+	}
 }

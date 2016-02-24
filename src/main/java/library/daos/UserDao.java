@@ -46,9 +46,19 @@ public class UserDao {
 	}
 
 	public String takeBook(BookInUse bookInUse) {
-
+		int bookId=0;
 		try {
-			component.dbComponent().takeBook(bookInUse);
+			bookId = component.dbComponent().getReserveBook(bookInUse.getId_book());
+		} catch (Exception e) {
+		}
+		
+		try {
+		
+			if (bookId != 0) {
+				component.dbComponent().updateBookInUse(bookId);
+			} else {
+				component.dbComponent().takeBook(bookInUse);
+			}
 			return "success: book taken";
 		} catch (Exception e) {
 			return "error: the book is not taken";
@@ -65,9 +75,9 @@ public class UserDao {
 
 	}
 
-	public String passBook(Integer id) {
+	public String passBook(BookInUse bookInUse) {
 		try {
-			component.dbComponent().passBook(id);
+			component.dbComponent().passBook(bookInUse);
 			return "success: book passed";
 		} catch (Exception e) {
 			return "error: the book not passed";
@@ -75,12 +85,16 @@ public class UserDao {
 
 	}
 
-	public List<User> usersSearch(String firstName) {
+	public List<User> usersSearch(User user) {
 
 		try {
-			return component.dbComponent().usersSearch(firstName);
+			return component.dbComponent().usersSearch(user);
 		} catch (Exception e) {
 		}
 		return null;
+	}
+
+	public User login(User user) {
+			return component.dbComponent().login(user);
 	}
 }

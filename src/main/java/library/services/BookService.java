@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import library.daos.BookDao;
 import library.entities.Book;
+import library.entities.BookInUse;
 
 @Service
 public class BookService {
@@ -35,6 +36,14 @@ public class BookService {
 	public Book getBook(Integer id) {
 
 		return bookDao.getBook(id);
+	}
+
+	public List<Book> getBooksUser(Integer id) {
+		return bookDao.getBooksUser(id);
+	}
+
+	public BookInUse getBookStatus(Integer id) {
+		return bookDao.getBookStatus(id);
 	}
 
 }
