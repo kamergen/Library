@@ -3,24 +3,22 @@ package library.daos;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import library.DataConfig;
 import library.entities.Book;
-import library.mapper.BookMapper;
+import library.entities.BookInUse;
 import library.services.DBComponentForBook;
 
 @Repository
 public class BookDao {
-
+	
 	@Autowired
 	private DBComponentForBook component;
 
 	public Book getBook(Integer id) {
 
 		try {
-			Book book = component.dbComponent().getBook(id);
+			final Book book = component.dbComponent().getBook(id);
 			component.dbComponent();
 			return book;
 
@@ -72,4 +70,27 @@ public class BookDao {
 		}
 	}
 
+	public List<Book> getBooksUser(Integer id) {
+		try {
+			return component.dbComponent().getBooksUser(id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public List<Book> bookSearch(Book book) {
+			try {
+				return component.dbComponent().bookSearch(book);
+			} catch (Exception e) {
+			}
+			return null;
+	}
+
+	public BookInUse getBookStatus(Integer id) {
+		try {
+			return component.dbComponent().getBookStatus(id);
+		} catch (Exception e) {
+		}
+		return null;
+	}
 }

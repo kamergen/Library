@@ -27,13 +27,14 @@ public class UserService {
 	public User getUser(Integer id) {
 		return userDao.getUser(id);
 	}
+
 	
 	public String takeBook(BookInUse bookInUse) {
 		return userDao.takeBook(bookInUse);
 	}
 
-	public String passBook(Integer id) {
-		return userDao.passBook(id);
+	public String passBook(BookInUse bookInUse) {
+		return userDao.passBook(bookInUse);
 	}
 
 }
