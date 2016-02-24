@@ -112,6 +112,11 @@
     .imgAvatar {
         max-height:150px;
     }
+    .imgLoadBlock{
+    	height: 150px; 
+    	width: 150px; 
+    	border: solid 1px #f0f0f0
+    }
     html, body {
         overflow-y: hidden;
     }
