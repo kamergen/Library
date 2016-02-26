@@ -24,7 +24,7 @@ public class BookService {
 		return bookDao.updateBook(book);
 	}
 
-	public String deleteBook(Integer id) {
+	public String deleteBook(int id) {
 
 		return bookDao.deleteBook(id);
 	}
@@ -33,16 +33,16 @@ public class BookService {
 		return bookDao.getAllBook();
 	}
 
-	public Book getBook(Integer id) {
+	public Book getBook(int id) {
 
 		return bookDao.getBook(id);
 	}
 
-	public List<Book> getBooksUser(Integer id) {
+	public List<Book> getBooksUser(int id) {
 		return bookDao.getBooksUser(id);
 	}
 
-	public BookInUse getBookStatus(Integer id) {
+	public BookInUse getBookStatus(int id) {
 		return bookDao.getBookStatus(id);
 	}
 

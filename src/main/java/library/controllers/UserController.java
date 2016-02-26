@@ -36,7 +36,7 @@ public class UserController {
 	private SearchService search;
 
 	@RequestMapping(value = "/users/user/{id}/", method = RequestMethod.GET)
-	public @ResponseBody User getUsers(@PathVariable Integer id) {
+	public @ResponseBody User getUsers(@PathVariable int id) {
 		return userService.getUser(id);
 	}
 
@@ -52,18 +52,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public @ResponseBody String addUser(@RequestBody User user) throws IOException {
-		
-		String imageDataBytes = user.getAvatar().substring(user.getAvatar().indexOf(",")+1);
-
-		InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes()));
-		
-		BufferedImage image = ImageIO.read(stream);
-		stream.close();
-
-		File outputfile = new File("src/main/webapp/img/" + user.getEmail()+ ".png");
-		ImageIO.write(image, "png", outputfile);
-		user.setAvatar("img/" + user.getEmail()+ ".png"); 
+	public @ResponseBody String addUser(@RequestBody User user){
 		
 		return regestrarion.addUser(user);
 	}
@@ -79,7 +68,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/delete", method = RequestMethod.DELETE)
-	public @ResponseBody String deleteUser(@RequestParam(required = true) Integer id) {
+	public @ResponseBody String deleteUser(@RequestParam(required = true) int id) {
 		return userService.deleteUser(id);
 	}
 

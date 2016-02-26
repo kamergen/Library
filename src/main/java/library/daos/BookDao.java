@@ -15,7 +15,7 @@ public class BookDao {
 	@Autowired
 	private DBComponentForBook component;
 
-	public Book getBook(Integer id) {
+	public Book getBook(int id) {
 
 		try {
 			final Book book = component.dbComponent().getBook(id);
@@ -50,7 +50,7 @@ public class BookDao {
 		}
 	}
 
-	public String deleteBook(Integer id) {
+	public String deleteBook(int id) {
 
 		try {
 			component.dbComponent().deleteBook(id);
@@ -70,7 +70,7 @@ public class BookDao {
 		}
 	}
 
-	public List<Book> getBooksUser(Integer id) {
+	public List<Book> getBooksUser(int id) {
 		try {
 			return component.dbComponent().getBooksUser(id);
 		} catch (Exception e) {
@@ -86,7 +86,7 @@ public class BookDao {
 			return null;
 	}
 
-	public BookInUse getBookStatus(Integer id) {
+	public BookInUse getBookStatus(int id) {
 		try {
 			return component.dbComponent().getBookStatus(id);
 		} catch (Exception e) {

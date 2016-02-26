@@ -1,8 +1,15 @@
 package library.daos;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Repository;
 
 import library.entities.BookInUse;
@@ -38,6 +45,18 @@ public class UserDao {
 
 	public String addUser(User user) {
 		try {
+			
+			String imageDataBytes = user.getAvatar().substring(user.getAvatar().indexOf(",")+1);
+
+			InputStream stream = new ByteArrayInputStream(Base64.decode(imageDataBytes.getBytes()));
+			
+			BufferedImage image = ImageIO.read(stream);
+			stream.close();
+
+			File outputfile = new File("src/main/webapp/img/" + user.getEmail()+ ".png");
+			ImageIO.write(image, "png", outputfile);
+			user.setAvatar("img/" + user.getEmail()+ ".png"); 
+			
 			component.dbComponent().addUser(user);
 			return "success: user added";
 		} catch (Exception e) {
@@ -65,7 +84,7 @@ public class UserDao {
 		}
 	}
 
-	public User getUser(Integer id) {
+	public User getUser(int id) {
 		try {
 			User user = component.dbComponent().getUser(id);
 			return user;

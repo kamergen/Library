@@ -25,17 +25,17 @@ public class BookController {
 	private SearchService search;
 
 	@RequestMapping(value = "/books/user/{id}/", method = RequestMethod.POST)
-	public @ResponseBody List<Book> getBooksUser(@PathVariable Integer id) {
+	public @ResponseBody List<Book> getBooksUser(@PathVariable int id) {
 		return bookService.getBooksUser(id);
 	}
 
 	@RequestMapping(value = "/books/book/{id}", method = RequestMethod.GET)
-	public @ResponseBody Book getBook(@PathVariable Integer id) {
+	public @ResponseBody Book getBook(@PathVariable int id) {
 		return bookService.getBook(id);
 	}
 	
 	@RequestMapping(value = "/book/status/{id}", method = RequestMethod.GET)
-	public @ResponseBody BookInUse getBookStatus(@PathVariable Integer id) {
+	public @ResponseBody BookInUse getBookStatus(@PathVariable int id) {
 		return bookService.getBookStatus(id);
 	}
 
@@ -63,7 +63,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/books/delete", method = RequestMethod.DELETE)
-	public @ResponseBody String deleteBook(@RequestParam(required = true) Integer id) {
+	public @ResponseBody String deleteBook(@RequestParam(required = true) int id) {
 		return bookService.deleteBook(id);
 	}
 }

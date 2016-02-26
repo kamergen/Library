@@ -15,7 +15,7 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	public String deleteUser(Integer id) {
+	public String deleteUser(int id) {
 
 		return userDao.deleteUser(id);
 	}
@@ -24,7 +24,7 @@ public class UserService {
 		return userDao.getAllUsers();
 	}
 
-	public User getUser(Integer id) {
+	public User getUser(int id) {
 		return userDao.getUser(id);
 	}
 

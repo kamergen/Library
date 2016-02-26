@@ -562,7 +562,6 @@ $('#btnSendData').click(function(e) {
 	var firstNameReg = $("#txtFirstName").val();
 	var lastNameReg = $("#txtLastName").val();
 	var passwordAgain = $("#txtPasswordAgain").val();
-	debugger;
 	var role = "ROLE_USER";
 	if (passwordReg != passwordAgain) {
 		return;

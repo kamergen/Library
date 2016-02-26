@@ -33,11 +33,11 @@ import library.services.DBComponentForUser;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	DataSource dataSource;
 	@Autowired
 	DBComponentForUser componentForUser;
-	
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 

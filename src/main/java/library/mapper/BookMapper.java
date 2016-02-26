@@ -13,7 +13,7 @@ import library.entities.BookInUse;
 public interface BookMapper {
 
 	@Select("Select * From books Where id = #{id}")
-	public Book getBook(Integer id);
+	public Book getBook(int id);
 
 	@Select("Select books.id, title,author, publishingHouse, years, pageNumber From books Order by title Desc")
 	public List<Book> getAllBook();
@@ -25,13 +25,13 @@ public interface BookMapper {
 	public Boolean updateBook(Book book);
 	
 	@Delete("Delete From books Where id = #{id}")
-	public Boolean deleteBook(Integer id);
+	public Boolean deleteBook(int id);
 
 	@Select("Select * From books Join booksInUse On booksInUse.id_book=books.id join users On  booksInUse.id_user = users.id Where users.id=#{id}")
-	public List<Book> getBooksUser(Integer id);
+	public List<Book> getBooksUser(int id);
 	
 	@Select("Select * From booksInUse Where id_book = #{id}")
-	public BookInUse getBookStatus(Integer id);
+	public BookInUse getBookStatus(int id);
 	
 	@Select("Select * From books Where title = #{title} Or author = #{author}")
 	public List<Book> bookSearch(Book book);

@@ -13,7 +13,7 @@ import library.entities.User;
 public interface UserMapper {
 
 	@Select("Select * From users Where id = #{id}")
-	public User getUser(Integer id);
+	public User getUser(int id);
 
 	@Select("Select * From users Where firstName = #{firstName} Or lastName = #{lastName} Or email = #{email}")
 	public List<User> usersSearch(User user);
@@ -25,7 +25,7 @@ public interface UserMapper {
 	public Boolean addUser(User user);
 
 	@Delete("Delete From users Where id = #{id}")
-	public Boolean deleteUser(Integer id);
+	public Boolean deleteUser(int id);
 
 	@Delete("Delete From booksInUse Where id_user = #{id_user} And id_book = #{id_book}")
 	public Boolean passBook(BookInUse bookInUse);
@@ -34,10 +34,10 @@ public interface UserMapper {
 	public Boolean takeBook(BookInUse bookInUse);
 
 	@Update("Update booksInUse Set bookStatus = 1 Where id = #{id}")
-	public Boolean updateBookInUse(Integer id);
+	public Boolean updateBookInUse(int id);
 	
 	@Select("Select id From booksInUse Where id_book = #{id_book}")
-	public Integer getReserveBook(Integer id_book);
+	public int getReserveBook(int id_book);
 	
 	@Select("Select * From users Where email = #{email} And password = #{password}")
 	public User login(User user);
