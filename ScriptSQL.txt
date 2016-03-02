@@ -1,0 +1,50 @@
+CREATE DATABASE library;
+use library
+CREATE TABLE `users` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`firstName` varchar(255) NOT NULL,
+	`lastName` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`avatar` varchar(255),
+	`email` varchar(255) NOT NULL UNIQUE,
+	`role` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `bookStatus` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`name` varchar(255) NOT NULL UNIQUE,
+	PRIMARY KEY (`id`)
+);
+CREATE TABLE `books` (
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`title` varchar(255) NOT NULL UNIQUE,
+	`author` varchar(255) NOT NULL,
+	`publishingHouse` varchar(255) NOT NULL,
+	`years` int(10) NOT NULL,
+	`pageNumber` int(10) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `booksInUse` (
+	`id` int(10) NOT NULL AUTO_INCREMENT,
+	`id_user` int(10) NOT NULL,
+	`id_book` int(10) NOT NULL,
+	`bookStatus` int NOT NULL,
+	`startDate` DATE NOT NULL,
+	`endDate` DATE NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+ALTER TABLE `booksInUse` ADD UNIQUE `unique_index`(`id_user`, `id_book`);
+
+INSERT INTO users (firstName,lastName,password,avatar,email,role) values ("admin", "admin", "admin", "img/admin.png","admin","ROLE_ADMIN");
+INSERT INTO users (firstName,lastName,password,avatar,email,role) values ("Владимир", "Семенов", "semenov1234", "img/belobokov@mail.ru.png","semenov@gmail.com","ROLE_USER");
+
+INSERT INTO books(id,title,author,publishingHouse,years,pageNumber) values (3,"Тропа мертвых","Джеймс Роллинс","Эксмо",2014,320);
+INSERT INTO books(id,title,author,publishingHouse,years,pageNumber) values (4,"Жизнь взаймы","Эрих Мария Ремарк","АСТ",2015,288);
+INSERT INTO books(id,title,author,publishingHouse,years,pageNumber) values (5,"Марсианин","Энди Уир","АСТ",2015,384);
+INSERT INTO books(id,title,author,publishingHouse,years,pageNumber) values (6,"Лестница Якова","Людмила Улицкая","АСТ",2015,736);
+INSERT INTO bookStatus(id,name) values (1,"на руках");
+INSERT INTO bookStatus(id,name) values (2,"в читальном зале");
+INSERT INTO bookStatus(id,name) values (3,"забронирована");
